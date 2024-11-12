@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.databinding.ActivityMainBinding
-import id.co.mentalhealth.registrasi.Regist_Activity
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnRegister.setOnClickListener {
-            val intent = Intent(this, Regist_Activity::class.java)
+            val intent = Intent(this, Registrasi_Activity::class.java)
             startActivity(intent)
         }
 

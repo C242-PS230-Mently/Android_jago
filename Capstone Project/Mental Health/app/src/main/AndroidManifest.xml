@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MentalHealth"
         tools:targetApi="31">
         <activity
-            android:name=".registrasi.Regist_Activity"
+            android:name=".Registrasi_Activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
