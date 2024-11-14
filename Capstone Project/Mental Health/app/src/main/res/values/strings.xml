@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Mently</string>
     <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
     <string-array name="simple_items">
         <item>Laki - Laki</item>
         <item>Perempuan</item>
     </string-array>
+    <string name="title_activity_home_page">HomePage_Activity</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_history">Hasil Konsultasi</string>
+    <string name="title_profile">Profile</string>
 </resources>

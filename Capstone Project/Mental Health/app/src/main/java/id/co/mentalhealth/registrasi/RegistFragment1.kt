@@ -42,5 +42,9 @@ class RegistFragment1 : Fragment() {
             }
         }
 
+        binding.tvMasukRegist.setOnClickListener {
+
+        }
+
     }
 }

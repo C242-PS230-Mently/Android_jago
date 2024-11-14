@@ -21,5 +21,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnMasuk.setOnClickListener {
+            val intent = Intent(this, HomePage_Activity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

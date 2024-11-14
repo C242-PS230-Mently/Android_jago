@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:padding="16dp"
-            android:fontFamily="@font/poppins_black"
+            android:fontFamily="@font/poppins_semibold"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:padding="16dp"
-            android:fontFamily="@font/poppins_black"
+            android:fontFamily="@font/poppins_semibold"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
