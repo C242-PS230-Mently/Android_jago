@@ -30,26 +30,5 @@ class HomePage_Activity : AppCompatActivity() {
         )
         navView.setupWithNavController(navController)
 
-        navView.selectedItemId = R.id.navigation_home
-        navView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    // Aksi untuk Home
-                    navController.navigate(R.id.navigation_home)
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.navigation_history -> {
-                    // Aksi untuk History
-                    navController.navigate(R.id.navigation_history)
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.navigation_profile -> {
-                    // Aksi untuk Profile
-                    navController.navigate(R.id.navigation_profile)
-                    return@setOnNavigationItemSelectedListener true
-                }
-                else -> false
-            }
-        }
     }
 }
