@@ -1,12 +1,15 @@
 package id.co.mentalhealth.registrasi
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import id.co.mentalhealth.R
+import id.co.mentalhealth.Registrasi_Activity
 import id.co.mentalhealth.databinding.FragmentRegist1Binding
+import id.co.mentalhealth.login.LoginActivity
 
 class RegistFragment1 : Fragment() {
 
@@ -43,7 +46,8 @@ class RegistFragment1 : Fragment() {
         }
 
         binding.tvMasukRegist.setOnClickListener {
-
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
+            startActivity(intent)
         }
 
     }
