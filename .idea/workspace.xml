@@ -16,21 +16,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Raqhib"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Raqhib&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/C242-PS230-Mently/Android_jago.git",
-    "accountId": "f4221cc9-9fc9-418b-a596-6f95cd1e8a86"
+    "accountId": "048e2f2f-822b-42db-804f-45207aa3b54b"
   }
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2okrhIB7HcinmzUdYOtoleM0XFD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,7 +47,7 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/RAQHIB ATAILLAH/BANGKIT/Android_jago",
+    "last_opened_file_path": "D:/PNUP/_PNUP folder/Bangkit 2024/Capstone/Android_jago/Capstone Project/Mental Health",
     "settings.editor.selected.configurable": "editor.preferences.import"
   }
 }]]></component>
