@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:padding="16dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/poppins_medium"
         android:text="Copyright @2024 by C242-PS230"
         android:textColor="@color/white"
         android:textSize="16sp"
