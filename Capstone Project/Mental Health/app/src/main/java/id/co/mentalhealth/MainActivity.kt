@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.databinding.ActivityMainBinding
+import id.co.mentalhealth.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,16 +16,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnMasuk.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.btnRegister.setOnClickListener {
             val intent = Intent(this, Registrasi_Activity::class.java)
             startActivity(intent)
         }
-
-        binding.btnMasuk.setOnClickListener {
-            val intent = Intent(this, HomePage_Activity::class.java)
-            startActivity(intent)
-        }
-
     }
 }

@@ -151,7 +151,7 @@
                 app:simpleItems="@array/simple_items" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_lanjut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -160,6 +160,9 @@
             android:text="Lanjut"
             android:textAllCaps="false"
             android:textSize="16sp"
+            app:backgroundTint="@color/biru_2"
+            android:padding="14dp"
+            app:cornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
