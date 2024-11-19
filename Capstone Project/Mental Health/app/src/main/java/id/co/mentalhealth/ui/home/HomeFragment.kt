@@ -1,5 +1,6 @@
 package id.co.mentalhealth.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import id.co.mentalhealth.databinding.FragmentHomeBinding
+import id.co.mentalhealth.ui.PsikologActivity
 
 class HomeFragment : Fragment() {
 
@@ -28,6 +30,17 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         return root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        binding.btnPsikolog.setOnClickListener {
+            val intent = Intent(requireActivity(), PsikologActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

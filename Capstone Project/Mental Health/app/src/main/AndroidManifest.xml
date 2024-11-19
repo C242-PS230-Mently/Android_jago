@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MentalHealth"
         tools:targetApi="31">
         <activity
+            android:name=".ui.PsikologActivity"
+            android:exported="false" />
+        <activity
             android:name=".LupaPwActivity"
             android:exported="false" />
         <activity

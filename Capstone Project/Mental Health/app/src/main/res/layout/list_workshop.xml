@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/ivEventPicture"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:cropToPadding="true"
             tools:srcCompat="@tools:sample/avatars"
             android:contentDescription="workshop" />
