@@ -1,4 +1,4 @@
-package id.co.mentalhealth.registrasi
+package id.co.mentalhealth.ui.registrasi
 
 import android.os.Bundle
 import android.view.LayoutInflater

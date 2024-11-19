@@ -1,4 +1,4 @@
-package id.co.mentalhealth.splash
+package id.co.mentalhealth.ui.splash
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

@@ -1,11 +1,13 @@
 package id.co.mentalhealth.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import id.co.mentalhealth.DetailProfileActivity
+import id.co.mentalhealth.ResetPwActivity
 import id.co.mentalhealth.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -21,15 +23,23 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        // Inflate the layout for this fragment
+        _binding = FragmentProfileBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        return root
+        binding.layoutPersonalInfo.setOnClickListener {
+            val intent = Intent(requireActivity(), DetailProfileActivity::class.java)
+            startActivity(intent)
+        }
 
-
+        binding.layoutPassword.setOnClickListener {
+            val intent = Intent(requireActivity(), ResetPwActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

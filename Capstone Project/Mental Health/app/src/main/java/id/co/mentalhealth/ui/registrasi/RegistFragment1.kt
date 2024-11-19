@@ -1,4 +1,4 @@
-package id.co.mentalhealth.registrasi
+package id.co.mentalhealth.ui.registrasi
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import id.co.mentalhealth.R
-import id.co.mentalhealth.Registrasi_Activity
 import id.co.mentalhealth.databinding.FragmentRegist1Binding
-import id.co.mentalhealth.login.LoginActivity
+import id.co.mentalhealth.ui.login.LoginActivity
 
 class RegistFragment1 : Fragment() {
 

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingStart="36dp"
@@ -9,7 +10,6 @@
     android:paddingTop="24dp"
     tools:context=".ui.profile.ProfileFragment">
 
-    <!-- Judul Profil -->
     <TextView
         android:id="@+id/title_profile"
         android:layout_width="wrap_content"
@@ -22,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Foto Profil -->
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="60dp"
@@ -33,7 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_profile" />
 
-    <!-- Nama Pengguna -->
     <TextView
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
@@ -47,7 +45,6 @@
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image" />
 
-    <!-- Pengaturan Akun Title -->
     <TextView
         android:id="@+id/account_settings_title"
         android:layout_width="wrap_content"
@@ -60,7 +57,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
-    <!-- Informasi Pribadi -->
     <LinearLayout
         android:id="@+id/layout_personal_info"
         android:layout_width="match_parent"
@@ -97,7 +93,6 @@
             android:src="@drawable/baseline_arrow_right_24" />
     </LinearLayout>
 
-    <!-- Keamanan Akun Title -->
     <TextView
         android:id="@+id/security_settings_title"
         android:layout_width="wrap_content"
@@ -110,7 +105,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_personal_info" />
 
-    <!-- Kata Sandi -->
     <LinearLayout
         android:id="@+id/layout_password"
         android:layout_width="match_parent"
@@ -135,7 +129,7 @@
             android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:fontFamily="@font/poppins_bold"
-            android:text="Kata Sandi"
+            android:text="Ubah Kata Sandi"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -149,18 +143,15 @@
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/button_outline"
         android:fontFamily="@font/poppins_medium"
         android:padding="12dp"
         android:text="Keluar"
-        android:textColor="@color/biru_2"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,12 @@
-package id.co.mentalhealth.login
+package id.co.mentalhealth.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import id.co.mentalhealth.HomePage_Activity
-import id.co.mentalhealth.R
+import id.co.mentalhealth.LupaPwActivity
 import id.co.mentalhealth.Registrasi_Activity
 import id.co.mentalhealth.databinding.ActivityLoginBinding
-import id.co.mentalhealth.databinding.ActivityMainBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -31,6 +27,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.tvBuatAkun.setOnClickListener {
             val intent = Intent(this, Registrasi_Activity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnLupapw.setOnClickListener {
+            val intent = Intent(this, LupaPwActivity::class.java)
             startActivity(intent)
         }
     }
