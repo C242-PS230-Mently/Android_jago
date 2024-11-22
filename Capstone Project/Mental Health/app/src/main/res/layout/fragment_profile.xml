@@ -141,13 +141,22 @@
             android:src="@drawable/baseline_arrow_right_24" />
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:fontFamily="@font/poppins_medium"
-        android:padding="12dp"
+        android:padding="14dp"
+        app:cornerRadius="10dp"
+        app:backgroundTint="@color/white"
+        android:textColor="@color/biru_2"
+        app:strokeColor="@color/biru_2"
+        app:strokeWidth="3dp"
+        app:icon="@drawable/baseline_logout_24"
+        app:iconTint="@color/biru_2"
+        app:iconGravity="textStart"
+        app:iconSize="24dp"
         android:text="Keluar"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
