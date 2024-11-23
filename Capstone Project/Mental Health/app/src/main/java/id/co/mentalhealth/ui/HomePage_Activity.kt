@@ -1,4 +1,4 @@
-package id.co.mentalhealth
+package id.co.mentalhealth.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import id.co.mentalhealth.R
 import id.co.mentalhealth.databinding.ActivityHomePageBinding
 
 class HomePage_Activity : AppCompatActivity() {

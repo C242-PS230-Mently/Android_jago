@@ -31,23 +31,43 @@ class RegistFragment1 : Fragment() {
         }
 
         binding.btnLanjut.setOnClickListener {
-            val fragment2 = RegistFragment2()
-            val mFragmentManager = parentFragmentManager
-            mFragmentManager.beginTransaction().apply {
-                replace(
-                    R.id.container_register,
-                    fragment2,
-                    RegistFragment2::class.java.simpleName
-                )
-                addToBackStack(null)
-                commit()
+            val fullName = binding.edtNamalengkap.text.toString().trim()
+            val email = binding.edtEmail.text.toString().trim()
+            val age = binding.edtUmur.text.toString().trim()
+            val gender = binding.ddJeniskelamin.text.toString().trim()
+
+            if (fullName.isEmpty()) {
+                binding.edtNamalengkap.error = "Nama lengkap harus diisi"
+            } else if (email.isEmpty()) {
+                binding.edtEmail.error = "Email tidak boleh kosong"
+            } else if (age.isEmpty()) {
+                binding.edtUmur.error = "Umur harus diisi"
+            } else {
+                val fragment2 = RegistFragment2()
+                val bundle = Bundle()
+                bundle.putString("fullName", fullName)
+                bundle.putString("email", email)
+                bundle.putString("age", age)
+                bundle.putString("gender", gender)
+                fragment2.arguments = bundle
+
+                parentFragmentManager.beginTransaction().apply {
+                    replace(
+                        R.id.container_register,
+                        fragment2,
+                        RegistFragment2::class.java.simpleName
+                    )
+                    addToBackStack(null)
+                    commit()
+                }
             }
         }
 
-        binding.tvMasukRegist.setOnClickListener {
+        binding.tvMasuk.setOnClickListener {
             val intent = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(intent)
         }
 
     }
+
 }

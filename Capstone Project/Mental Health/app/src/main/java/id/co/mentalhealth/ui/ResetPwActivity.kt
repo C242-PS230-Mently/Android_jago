@@ -1,4 +1,4 @@
-package id.co.mentalhealth
+package id.co.mentalhealth.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

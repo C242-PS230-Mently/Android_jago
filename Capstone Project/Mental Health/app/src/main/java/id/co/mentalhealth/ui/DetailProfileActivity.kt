@@ -1,16 +1,17 @@
-package id.co.mentalhealth
+package id.co.mentalhealth.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import id.co.mentalhealth.databinding.ActivityLupaPwBinding
+import id.co.mentalhealth.databinding.ActivityDetailProfileBinding
 
-class LupaPwActivity : AppCompatActivity() {
+class DetailProfileActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLupaPwBinding
+    private lateinit var binding: ActivityDetailProfileBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLupaPwBinding.inflate(layoutInflater)
+        binding = ActivityDetailProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener {

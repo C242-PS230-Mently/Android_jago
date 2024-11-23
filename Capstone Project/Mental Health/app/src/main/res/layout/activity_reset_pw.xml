@@ -8,7 +8,7 @@
     android:paddingStart="36dp"
     android:paddingEnd="36dp"
     android:paddingTop="24dp"
-    tools:context=".ResetPwActivity">
+    tools:context=".ui.ResetPwActivity">
 
     <ImageView
         android:id="@+id/btnBack"

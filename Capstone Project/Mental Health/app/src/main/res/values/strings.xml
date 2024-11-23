@@ -3,7 +3,7 @@
     <string name="sign_up">SIGN UP</string>
     <string name="login">LOGIN</string>
     <string-array name="simple_items">
-        <item>Laki - Laki</item>
+        <item>Laki Laki</item>
         <item>Perempuan</item>
     </string-array>
     <string name="title_activity_home_page">HomePage_Activity</string>
