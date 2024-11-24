@@ -9,6 +9,11 @@
         <item name="colorSecondary">@color/pink</item>
         <item name="colorSecondaryVariant">@color/biru_2</item>
         <item name="colorOnSecondary">@color/white</item>
+
+<!-- Animation -->
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/slide_bottom</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
     </style>
 
     <style name="Theme.MentalHealth" parent="Base.Theme.MentalHealth" />
