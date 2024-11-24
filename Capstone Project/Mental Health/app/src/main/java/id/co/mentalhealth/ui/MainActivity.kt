@@ -1,4 +1,4 @@
-package id.co.mentalhealth
+package id.co.mentalhealth.ui
 
 import android.content.Intent
 import android.os.Bundle

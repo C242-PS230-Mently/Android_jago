@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import id.co.mentalhealth.DetailProfileActivity
-import id.co.mentalhealth.ResetPwActivity
+import id.co.mentalhealth.ui.DetailProfileActivity
+import id.co.mentalhealth.ui.ResetPwActivity
 import id.co.mentalhealth.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {

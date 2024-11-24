@@ -1,7 +1,5 @@
 package id.co.mentalhealth.ui.splash
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,8 +7,7 @@ import android.os.Looper
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat.animate
-import id.co.mentalhealth.MainActivity
+import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {

@@ -8,7 +8,7 @@
     android:paddingTop="24dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailProfileActivity">
+    tools:context=".ui.DetailProfileActivity">
 
     <ImageView
         android:id="@+id/btnBack"

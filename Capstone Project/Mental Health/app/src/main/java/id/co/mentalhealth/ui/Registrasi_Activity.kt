@@ -1,7 +1,8 @@
-package id.co.mentalhealth
+package id.co.mentalhealth.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import id.co.mentalhealth.R
 import id.co.mentalhealth.databinding.ActivityRegistrasiBinding
 import id.co.mentalhealth.ui.registrasi.RegistFragment1
 
