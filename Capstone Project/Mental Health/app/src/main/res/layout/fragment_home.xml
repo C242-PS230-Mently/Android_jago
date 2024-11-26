@@ -50,10 +50,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_test"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:cornerRadius="10dp"
                         android:text="Mulai Test"
                         android:layout_margin="24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,11 +82,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_psikolog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="cari pakar"
+                        app:cornerRadius="10dp"
+                        android:text="Cari Pakar"
                         android:layout_margin="24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -108,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
-                tools:listitem="@layout/list_workshop"
-                app:layoutManager="LinearLayoutManager" />
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/list_workshop" />
 
             <TextView
                 android:id="@+id/tv_artikel"
@@ -125,8 +127,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                tools:listitem="@layout/list_workshop"
-                app:layoutManager="LinearLayoutManager" />
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/list_workshop" />
 
         </LinearLayout>
         </androidx.cardview.widget.CardView>
