@@ -1,13 +1,11 @@
 package id.co.mentalhealth.ui.login
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import id.co.mentalhealth.data.UserPreferences
@@ -62,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.tvBuatAkun.setOnClickListener {
             val intent = Intent(this, Registrasi_Activity::class.java)
-            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(intent)
         }
 
         binding.btnLupapw.setOnClickListener {

@@ -1,10 +1,8 @@
 package id.co.mentalhealth.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import id.co.mentalhealth.databinding.ActivityMainBinding
 import id.co.mentalhealth.ui.login.LoginActivity
 import id.co.mentalhealth.ui.registrasi.Registrasi_Activity
@@ -21,12 +19,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnMasuk.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(intent)
         }
 
         binding.btnRegister.setOnClickListener {
             val intent = Intent(this, Registrasi_Activity::class.java)
-            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(intent)
         }
     }
 }
