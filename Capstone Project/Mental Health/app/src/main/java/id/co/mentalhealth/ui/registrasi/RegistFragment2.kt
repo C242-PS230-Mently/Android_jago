@@ -1,19 +1,25 @@
 package id.co.mentalhealth.ui.registrasi
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import id.co.mentalhealth.data.UserPreferences
+import id.co.mentalhealth.data.dataStore
 import id.co.mentalhealth.databinding.FragmentRegist2Binding
+import id.co.mentalhealth.ui.login.LoginActivity
 
 class RegistFragment2 : Fragment() {
 
     private lateinit var binding: FragmentRegist2Binding
 
-    private val registerViewModel: RegistViewModel by activityViewModels()
+    private val registViewModel: RegistViewModel by viewModels {
+        RegisterViewModelFactory(UserPreferences.getInstance(requireContext().dataStore))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +52,7 @@ class RegistFragment2 : Fragment() {
             } else if (password.isEmpty()) {
                 binding.edtPassword.error = "Password harus diisi"
             } else {
-                registerViewModel.register(fullName, email, age, gender, username, password)
+                registViewModel.register(fullName, email, age, gender, username, password)
             }
         }
 
@@ -54,9 +60,13 @@ class RegistFragment2 : Fragment() {
     }
 
     private fun observeRegistrationResult() {
-        registerViewModel.registerResult.observe(viewLifecycleOwner) { result ->
+        registViewModel.registerResult.observe(viewLifecycleOwner) { result ->
             result.onSuccess {
                 Toast.makeText(requireContext(), "Registrasi berhasil: ${it.msg}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+
                 requireActivity().finish()
             }
             result.onFailure { throwable ->

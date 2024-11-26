@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.databinding.ActivityMainBinding
 import id.co.mentalhealth.ui.login.LoginActivity
+import id.co.mentalhealth.ui.registrasi.Registrasi_Activity
 
 class MainActivity : AppCompatActivity() {
 

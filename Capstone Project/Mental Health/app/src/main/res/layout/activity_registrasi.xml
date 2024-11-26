@@ -9,7 +9,7 @@
     android:paddingEnd="36dp"
     android:paddingTop="24dp"
     android:paddingBottom="24dp"
-    tools:context=".ui.Registrasi_Activity">
+    tools:context=".ui.registrasi.Registrasi_Activity">
 
 
 </FrameLayout>

@@ -24,7 +24,7 @@
             android:name=".ui.ResetPwActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.DetailProfileActivity"
+            android:name=".ui.profile.DetailProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -39,11 +39,11 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.HomePage_Activity"
+            android:name=".ui.home.HomePage_Activity"
             android:exported="false"
             android:label="@string/title_activity_home_page" />
         <activity
-            android:name=".ui.Registrasi_Activity"
+            android:name=".ui.registrasi.Registrasi_Activity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

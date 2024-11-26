@@ -7,15 +7,21 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import id.co.mentalhealth.data.UserPreferences
+import id.co.mentalhealth.data.dataStore
 import id.co.mentalhealth.databinding.ActivityLoginBinding
-import id.co.mentalhealth.ui.HomePage_Activity
 import id.co.mentalhealth.ui.LupaPwActivity
-import id.co.mentalhealth.ui.Registrasi_Activity
+import id.co.mentalhealth.ui.home.HomePage_Activity
+import id.co.mentalhealth.ui.registrasi.Registrasi_Activity
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels {
+        LoginViewModelFactory(UserPreferences.getInstance(applicationContext.dataStore))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +76,8 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("LoginActivity", "Login berhasil! Token: ${data.accessToken}")
                 Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
 
+                saveTokenToPreferences(data.accessToken)
+
                 val intent = Intent(this, HomePage_Activity::class.java)
                 startActivity(intent)
                 finish()
@@ -82,14 +90,18 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-
-//    private fun errorMessage(){
-//        loginViewModel.errorMessage.observe(this, Observer { errorMessage ->
-//            errorMessage?.let {
-//                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
+    private fun saveTokenToPreferences(token: String) {
+        val userPreferences = UserPreferences.getInstance(applicationContext.dataStore)
+        Log.d("LoginActivity", "Menyimpan token ke DataStore: $token")
+        lifecycleScope.launch {
+            try {
+                userPreferences.saveToken(token) // Memanggil fungsi suspend di dalam coroutine
+                Log.d("LoginActivity", "Token berhasil disimpan.")
+            } catch (e: Exception) {
+                Log.e("LoginActivity", "Error menyimpan token: ${e.message}")
+            }
+        }
+    }
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
