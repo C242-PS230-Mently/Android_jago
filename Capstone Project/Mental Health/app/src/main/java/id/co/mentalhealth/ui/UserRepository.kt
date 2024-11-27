@@ -94,4 +94,20 @@ class UserRepository(private val apiService: ApiService, private val userPrefere
             }
         })
     }
+
 }
+
+//    fun getQuestions() {
+//        CoroutineScope(Dispatchers.IO).launch {
+//            try {
+//                val response = apiService.getQuestions()
+//
+//                _questions.postValue(Result.success(response))
+//            } catch (e: Exception) {
+//                _questions.postValue(Result.failure(e))
+//                _errorMessage.postValue("Gagal mengambil data pertanyaan: ${e.message}")
+//                Log.e("UserRepository", "Error getQuestions: ${e.message}", e)
+//            }
+//        }
+//    }
+

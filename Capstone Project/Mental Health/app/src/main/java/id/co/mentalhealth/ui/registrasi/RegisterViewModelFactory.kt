@@ -5,7 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import id.co.mentalhealth.data.UserPreferences
 
 class RegisterViewModelFactory(private val userPreferences: UserPreferences) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return RegistViewModel(userPreferences) as T
+        if (modelClass.isAssignableFrom(RegistViewModel::class.java)) {
+            return RegistViewModel(userPreferences) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

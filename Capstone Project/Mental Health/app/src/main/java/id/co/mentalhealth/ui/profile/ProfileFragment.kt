@@ -11,7 +11,7 @@ import id.co.mentalhealth.data.UserPreferences
 import id.co.mentalhealth.data.dataStore
 import id.co.mentalhealth.databinding.FragmentProfileBinding
 import id.co.mentalhealth.ui.MainActivity
-import id.co.mentalhealth.ui.ResetPwActivity
+import id.co.mentalhealth.ui.password.ResetPwActivity
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {

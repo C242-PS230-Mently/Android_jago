@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import id.co.mentalhealth.databinding.FragmentHomeBinding
 import id.co.mentalhealth.ui.PsikologActivity
+import id.co.mentalhealth.ui.quest.QuestActivity
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var _binding: FragmentHomeBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -41,10 +42,10 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireActivity(), PsikologActivity::class.java)
             startActivity(intent)
         }
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        binding.btnTest.setOnClickListener {
+            val intent = Intent(requireActivity(), QuestActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

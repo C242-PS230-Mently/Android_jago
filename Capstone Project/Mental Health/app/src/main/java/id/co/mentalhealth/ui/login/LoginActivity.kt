@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import id.co.mentalhealth.data.UserPreferences
 import id.co.mentalhealth.data.dataStore
 import id.co.mentalhealth.databinding.ActivityLoginBinding
-import id.co.mentalhealth.ui.LupaPwActivity
 import id.co.mentalhealth.ui.home.HomePage_Activity
+import id.co.mentalhealth.ui.password.LupaPwActivity
 import id.co.mentalhealth.ui.registrasi.Registrasi_Activity
 import kotlinx.coroutines.launch
 

@@ -1,17 +1,16 @@
-package id.co.mentalhealth.ui
+package id.co.mentalhealth.ui.password
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import id.co.mentalhealth.databinding.ActivityResetPwBinding
+import id.co.mentalhealth.databinding.ActivityLupaPwBinding
 
-class ResetPwActivity : AppCompatActivity() {
+class LupaPwActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityResetPwBinding
-
+    private lateinit var binding: ActivityLupaPwBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityResetPwBinding.inflate(layoutInflater)
+        binding = ActivityLupaPwBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener {

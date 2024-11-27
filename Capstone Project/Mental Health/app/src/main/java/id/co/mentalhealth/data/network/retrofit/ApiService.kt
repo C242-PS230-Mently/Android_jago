@@ -1,10 +1,12 @@
 package id.co.mentalhealth.data.network.retrofit
 
 import id.co.mentalhealth.data.network.response.LoginResponse
+import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -27,4 +29,7 @@ interface ApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<RegisterResponse>
+
+    @GET("/user/questions")
+    suspend fun getQuestions(): QuestionResponse
 }
