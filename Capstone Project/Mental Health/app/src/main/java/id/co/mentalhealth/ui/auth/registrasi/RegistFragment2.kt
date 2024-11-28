@@ -1,4 +1,4 @@
-package id.co.mentalhealth.ui.registrasi
+package id.co.mentalhealth.ui.auth.registrasi
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import id.co.mentalhealth.data.UserPreferences
-import id.co.mentalhealth.data.dataStore
+import id.co.mentalhealth.data.pref.UserPreferences
+import id.co.mentalhealth.data.pref.dataStore
 import id.co.mentalhealth.databinding.FragmentRegist2Binding
-import id.co.mentalhealth.ui.login.LoginActivity
+import id.co.mentalhealth.ui.auth.login.LoginActivity
 
 class RegistFragment2 : Fragment() {
 

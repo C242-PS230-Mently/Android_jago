@@ -1,8 +1,8 @@
-package id.co.mentalhealth.ui.registrasi
+package id.co.mentalhealth.ui.auth.registrasi
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import id.co.mentalhealth.data.UserPreferences
+import id.co.mentalhealth.data.pref.UserPreferences
 import id.co.mentalhealth.data.network.response.RegisterResponse
 import id.co.mentalhealth.data.network.retrofit.ApiConfig
 import id.co.mentalhealth.ui.UserRepository

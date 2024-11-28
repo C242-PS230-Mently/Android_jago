@@ -1,4 +1,4 @@
-package id.co.mentalhealth.ui.registrasi
+package id.co.mentalhealth.ui.auth.registrasi
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,18 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import id.co.mentalhealth.R
 import id.co.mentalhealth.databinding.FragmentRegist1Binding
-import id.co.mentalhealth.ui.login.LoginActivity
+import id.co.mentalhealth.ui.auth.AuthViewModel
+import id.co.mentalhealth.ui.auth.AuthViewModelFactory
+import id.co.mentalhealth.ui.auth.login.LoginActivity
 
 class RegistFragment1 : Fragment() {
-
+    private val viewModel by viewModels<AuthViewModel> {
+        AuthViewModelFactory.getInstance(requireContext())
+    }
     private lateinit var binding: FragmentRegist1Binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRegist1Binding.inflate(layoutInflater)
         return binding.root
     }

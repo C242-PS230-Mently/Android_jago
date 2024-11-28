@@ -4,25 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity"
+    tools:context=".ui.auth.login.LoginActivity"
     android:padding="24dp">
+
+    <ProgressBar
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
 
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Back button"
-        android:src="@drawable/baseline_arrow_left_24"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_daftarakun"
+        android:id="@+id/txt_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Daftar Akun Baru"
+        android:text="Masuk ke akun"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,10 +45,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="Username"
+        android:hint="Username atau Email"
         app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="@+id/txt_daftarakun"
-        app:layout_constraintTop_toBottomOf="@+id/txt_daftarakun">
+        app:layout_constraintStart_toStartOf="@+id/txt_login"
+        app:layout_constraintTop_toBottomOf="@+id/txt_login">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_namapengguna"
@@ -58,7 +70,7 @@
         app:layout_constraintStart_toStartOf="@+id/txt_namapengguna"
         app:layout_constraintTop_toBottomOf="@+id/txt_namapengguna">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <id.co.mentalhealth.ui.customview.MyPwdEditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,16 +106,19 @@
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lupapw" />
 
     <LinearLayout
+        android:id="@+id/btn_buat_akun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
         <TextView
             android:id="@+id/txt_buat_akun"
@@ -118,8 +133,8 @@
             android:id="@+id/tv_buat_akun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
             android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Buat Akun"
             android:textColor="@color/pink"
             android:textSize="14sp" />

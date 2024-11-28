@@ -1,8 +1,8 @@
-package id.co.mentalhealth.ui.registrasi
+package id.co.mentalhealth.ui.auth.registrasi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import id.co.mentalhealth.data.UserPreferences
+import id.co.mentalhealth.data.pref.UserPreferences
 
 class RegisterViewModelFactory(private val userPreferences: UserPreferences) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")

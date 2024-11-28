@@ -7,7 +7,7 @@
     android:paddingStart="36dp"
     android:paddingEnd="36dp"
     android:paddingTop="24dp"
-    tools:context=".ui.History.HistoryFragment">
+    tools:context=".ui.history.HistoryFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_history"

@@ -3,11 +3,11 @@
     <style name="Base.Theme.MentalHealth" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/pink</item>
-        <item name="colorPrimaryVariant">@color/biru_2</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <item name="colorSecondary">@color/pink</item>
-        <item name="colorSecondaryVariant">@color/biru_2</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
         <item name="colorOnSecondary">@color/white</item>
 
 <!-- Animation -->

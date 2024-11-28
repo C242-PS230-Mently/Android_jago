@@ -5,14 +5,14 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.registrasi.RegistFragment1">
+        tools:context=".ui.auth.registrasi.RegistFragment1">
 
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Back button"
-            android:src="@drawable/baseline_arrow_left_24"
+            android:src="@drawable/baseline_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="@+id/nomor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nomor" />
@@ -161,7 +161,7 @@
             android:fontFamily="@font/poppins_bold"
             android:text="LANJUT"
             android:textSize="16sp"
-            app:backgroundTint="@color/biru_2"
+            app:backgroundTint="@color/blue"
             android:padding="14dp"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"

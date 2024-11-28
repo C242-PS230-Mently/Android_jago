@@ -1,4 +1,4 @@
-package id.co.mentalhealth.ui.History
+package id.co.mentalhealth.ui.history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
