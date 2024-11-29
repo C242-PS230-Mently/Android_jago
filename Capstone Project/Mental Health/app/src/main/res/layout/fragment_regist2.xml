@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.auth.registrasi.RegistFragment2">
 
+    <ProgressBar
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
@@ -41,6 +52,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_namapengguna"
+        android:alpha="0"
+        tools:alpha="100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -61,6 +74,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_password"
+        android:alpha="0"
+        tools:alpha="100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -69,8 +84,30 @@
         app:layout_constraintStart_toStartOf="@+id/txt_namapengguna"
         app:layout_constraintTop_toBottomOf="@+id/txt_namapengguna">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <id.co.mentalhealth.ui.customview.MyPwdEditText
             android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_konf_password"
+        android:alpha="0"
+        tools:alpha="100"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Konfirmasi Password"
+        app:endIconMode="password_toggle"
+        app:layout_constraintStart_toStartOf="@+id/txt_password"
+        app:layout_constraintTop_toBottomOf="@+id/txt_password">
+
+        <id.co.mentalhealth.ui.customview.MyPwdEditText
+            android:id="@+id/edt_konf_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -81,6 +118,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_daftar"
+        android:alpha="0"
+        tools:alpha="100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"

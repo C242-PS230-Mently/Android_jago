@@ -41,14 +41,12 @@ class LoginActivity : AppCompatActivity() {
         setupAnimation()
 
         binding.btnLogin.setOnClickListener { login() }
-
         binding.btnBack.setOnClickListener { finish() }
 
         binding.tvBuatAkun.setOnClickListener {
             val intent = Intent(this, Registrasi_Activity::class.java)
             startActivity(intent)
         }
-
         binding.btnLupapw.setOnClickListener {
             val intent = Intent(this, LupaPwActivity::class.java)
             startActivity(intent)
@@ -67,6 +65,12 @@ class LoginActivity : AppCompatActivity() {
                     setPositiveButton("OK", null)
                     create()
                     show()
+                }
+                if (identifier.isEmpty()) {
+                    binding.edtNamapengguna.error = "Username atau Email harus diisi"
+                }
+                if (password.isEmpty()) {
+                    binding.edtPassword.error = "Password harus diisi"
                 }
             }
 
@@ -117,17 +121,17 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAnimation() {
         val titleAnimator =
-            ObjectAnimator.ofFloat(binding.txtLogin, "alpha", 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.txtLogin, "alpha", 1f).setDuration(150)
         val usernameAnimator =
-            ObjectAnimator.ofFloat(binding.txtNamapengguna, "alpha", 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.txtNamapengguna, "alpha", 1f).setDuration(100)
         val passwordAnimator =
-            ObjectAnimator.ofFloat(binding.txtPassword, "alpha", 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.txtPassword, "alpha", 1f).setDuration(100)
         val lupapwAnimator =
-            ObjectAnimator.ofFloat(binding.btnLupapw, "alpha", 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.btnLupapw, "alpha", 1f).setDuration(100)
         val loginAnimator =
-            ObjectAnimator.ofFloat(binding.btnLogin, "alpha", 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.btnLogin, "alpha", 1f).setDuration(100)
         val buatakunAnimator =
-            ObjectAnimator.ofFloat(binding.btnBuatAkun, "alpha", 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.btnBuatAkun, "alpha", 1f).setDuration(100)
 
         AnimatorSet().apply {
             playSequentially(
