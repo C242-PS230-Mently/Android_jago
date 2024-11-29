@@ -1,4 +1,4 @@
-package id.co.mentalhealth.ui.History
+package id.co.mentalhealth.ui.history
 
 import android.os.Bundle
 import android.view.LayoutInflater

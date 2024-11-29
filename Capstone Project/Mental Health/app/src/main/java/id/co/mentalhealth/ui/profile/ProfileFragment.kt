@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import id.co.mentalhealth.data.UserPreferences
-import id.co.mentalhealth.data.dataStore
+import id.co.mentalhealth.data.pref.UserPreferences
+import id.co.mentalhealth.data.pref.dataStore
 import id.co.mentalhealth.databinding.FragmentProfileBinding
 import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.password.ResetPwActivity
@@ -56,7 +56,7 @@ class ProfileFragment : Fragment() {
     private fun logout() {
         lifecycleScope.launch {
             try {
-                userPreferences.clearToken()
+                userPreferences.logout()
 
                 val intent = Intent(requireActivity(), MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

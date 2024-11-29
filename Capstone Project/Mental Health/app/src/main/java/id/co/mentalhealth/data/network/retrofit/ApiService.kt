@@ -15,21 +15,21 @@ interface ApiService {
 //    Authentication
     @FormUrlEncoded
     @POST("/auth/login")
-    fun login(
+    suspend fun login(
         @Field("identifier") identifier: String,
         @Field("password") password: String
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @FormUrlEncoded
     @POST("/auth/register")
-    fun register(
+    suspend fun register(
         @Field("full_name") fullname: String,
         @Field("email") email: String,
         @Field("age") age: String,
         @Field("gender") gender: String,
         @Field("username") username: String,
         @Field("password") password: String
-    ): Call<RegisterResponse>
+    ): RegisterResponse
 
     @GET("/user/questions")
     suspend fun getQuestions(): QuestionResponse

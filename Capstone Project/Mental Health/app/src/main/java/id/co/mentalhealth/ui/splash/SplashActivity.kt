@@ -7,17 +7,24 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import id.co.mentalhealth.data.UserPreferences
-import id.co.mentalhealth.data.dataStore
+import id.co.mentalhealth.data.pref.UserPreferences
+import id.co.mentalhealth.data.pref.dataStore
 import id.co.mentalhealth.databinding.ActivitySplashBinding
 import id.co.mentalhealth.ui.MainActivity
+import id.co.mentalhealth.ui.MainViewModel
+import id.co.mentalhealth.ui.auth.AuthViewModelFactory
 import id.co.mentalhealth.ui.home.HomePage_Activity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
+    private val viewModel by viewModels<MainViewModel> {
+        AuthViewModelFactory.getInstance(this)
+    }
+
     private lateinit var binding: ActivitySplashBinding
 
     private lateinit var userPreferences: UserPreferences
@@ -75,25 +82,18 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkLoginStatus() {
-        lifecycleScope.launch {
-            Log.d("SplashActivity", "Memulai pengecekan status login...")
-
-            try {
-                // Ambil token dari DataStore
-                val token = userPreferences.getToken().first()
-
-                if (token.isNullOrEmpty()) {
-                    Log.d("SplashActivity", "Token tidak ditemukan. Mengarahkan ke LoginActivity.")
+            viewModel.getSession().observe(this) { user ->
+                if (!user.isLogin) {
+                    Log.d("SplashActivity", "Tidak Login. Mengarahkan ke LoginActivity.")
                     navigateToLogin()
                 } else {
-                    Log.d("SplashActivity", "Token ditemukan: $token. Mengarahkan ke HomePage_Activity.")
+                    Log.d(
+                        "SplashActivity",
+                        "Login. Mengarahkan ke HomePage_Activity."
+                    )
                     navigateToHome()
                 }
-            } catch (e: Exception) {
-                Log.e("SplashActivity", "Terjadi kesalahan saat memeriksa status login: ${e.message}")
-                navigateToLogin() // Jika terjadi kesalahan, anggap pengguna belum login
             }
-        }
     }
 
 

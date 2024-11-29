@@ -5,11 +5,22 @@ import androidx.lifecycle.ViewModelProvider
 import id.co.mentalhealth.ui.QuestionRepository
 
 
-class QuestViewModelFactory(private val questionRepository: QuestionRepository) : ViewModelProvider.Factory {
+class QuestViewModelFactory(private val questionRepository: QuestionRepository) :
+    ViewModelProvider.NewInstanceFactory() {
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(QuestViewModel::class.java)) {
-            return QuestViewModel(questionRepository) as T
+        return when {
+            modelClass.isAssignableFrom(QuestViewModel::class.java) -> {
+                QuestViewModel(questionRepository) as T
+            }
+
+            else -> throw IllegalArgumentException("Unknown ViewModel class")
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+
+    companion object {
+
+
     }
 }
+

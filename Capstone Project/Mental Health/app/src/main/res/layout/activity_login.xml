@@ -4,39 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context=".ui.auth.login.LoginActivity">
+
+    <ProgressBar
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
 
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Back button"
-        android:src="@drawable/baseline_arrow_left_24"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_daftarakun"
+        android:id="@+id/txt_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_bold"
-        android:text="Masukkan Akun Anda"
+        android:text="Masuk ke akun"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_namapengguna"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="username atau email"
+        android:alpha="0"
+        android:hint="Username atau Email"
         app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="@+id/txt_daftarakun"
-        app:layout_constraintTop_toBottomOf="@+id/txt_daftarakun">
+        app:layout_constraintStart_toStartOf="@+id/txt_login"
+        app:layout_constraintTop_toBottomOf="@+id/txt_login"
+        tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_namapengguna"
@@ -53,12 +69,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="password"
+        android:alpha="0"
+        android:hint="Password"
         app:endIconMode="password_toggle"
         app:layout_constraintStart_toStartOf="@+id/txt_namapengguna"
-        app:layout_constraintTop_toBottomOf="@+id/txt_namapengguna">
+        app:layout_constraintTop_toBottomOf="@+id/txt_namapengguna"
+        tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <id.co.mentalhealth.ui.customview.MyPwdEditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,19 +91,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_semibold"
         android:text="Lupa Password?"
+        android:textAlignment="center"
         android:textColor="@color/pink"
         android:textSize="14sp"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/txt_password"
-        app:layout_constraintTop_toBottomOf="@id/txt_password" />
+        app:layout_constraintTop_toBottomOf="@id/txt_password"
+        tools:alpha="100" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_bold"
         android:padding="14dp"
         android:text="Masuk"
@@ -94,16 +115,22 @@
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lupapw"
+        tools:alpha="100" />
 
     <LinearLayout
+        android:id="@+id/btn_buat_akun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:alpha="0"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        tools:alpha="100">
 
         <TextView
             android:id="@+id/txt_buat_akun"
@@ -118,8 +145,8 @@
             android:id="@+id/tv_buat_akun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
             android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Buat Akun"
             android:textColor="@color/pink"
             android:textSize="14sp" />

@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Back button"
-        android:src="@drawable/baseline_arrow_left_24"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintBottom_toBottomOf="@+id/title_lupapw"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/title_lupapw" />
@@ -63,7 +63,7 @@
         android:padding="14dp"
         android:text="KIRIM"
         android:textSize="16sp"
-        app:backgroundTint="@color/biru_2"
+        app:backgroundTint="@color/blue"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

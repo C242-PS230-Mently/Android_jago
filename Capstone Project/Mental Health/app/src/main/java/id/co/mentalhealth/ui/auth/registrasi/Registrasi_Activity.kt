@@ -1,5 +1,6 @@
-package id.co.mentalhealth.ui.registrasi
+package id.co.mentalhealth.ui.auth.registrasi
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.R
@@ -15,14 +16,14 @@ class Registrasi_Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         val mFragmentManager = supportFragmentManager
-        val fragment1 = RegistFragment1()
 
         val fragment = mFragmentManager.findFragmentByTag(RegistFragment1::class.java.simpleName)
         if (fragment !is RegistFragment1) {
             mFragmentManager
                 .beginTransaction()
-                .add(R.id.container_register, fragment1, RegistFragment1::class.java.simpleName)
+                .add(R.id.container_register, RegistFragment1(), RegistFragment1::class.java.simpleName)
                 .commit()
         }
     }
+
 }

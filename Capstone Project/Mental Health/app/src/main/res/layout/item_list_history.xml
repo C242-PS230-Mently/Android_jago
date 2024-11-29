@@ -21,7 +21,7 @@
             android:orientation="horizontal"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:background="@color/biru_2">
+            android:background="@color/blue">
 
             <TextView
                 android:id="@+id/tv_title"
