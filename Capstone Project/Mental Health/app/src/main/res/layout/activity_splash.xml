@@ -27,7 +27,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="Copyright @2024 by C242-PS230"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

@@ -25,6 +25,19 @@ class UserRepository(private val apiService: ApiService, private val userPrefere
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
+    companion object {
+        @Volatile
+        private var INSTANCE: UserRepository? = null
+
+        fun getInstance(apiService: ApiService, userPreferences: UserPreferences): UserRepository {
+            return INSTANCE ?: synchronized(this) {
+                val instance = INSTANCE ?: UserRepository(apiService, userPreferences)
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+
     fun login(identifier: String, password: String) {
         val client = apiService.login(identifier, password)
         Log.d("UserRepository", "Memulai proses login dengan identifier: $identifier")
@@ -95,19 +108,7 @@ class UserRepository(private val apiService: ApiService, private val userPrefere
         })
     }
 
-}
 
-//    fun getQuestions() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            try {
-//                val response = apiService.getQuestions()
-//
-//                _questions.postValue(Result.success(response))
-//            } catch (e: Exception) {
-//                _questions.postValue(Result.failure(e))
-//                _errorMessage.postValue("Gagal mengambil data pertanyaan: ${e.message}")
-//                Log.e("UserRepository", "Error getQuestions: ${e.message}", e)
-//            }
-//        }
-//    }
+
+}
 

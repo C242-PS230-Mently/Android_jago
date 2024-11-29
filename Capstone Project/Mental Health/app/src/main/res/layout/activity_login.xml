@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Daftar Akun Baru"
+        android:text="Masukkan Akun Anda"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="Username"
+        android:hint="username atau email"
         app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="@+id/txt_daftarakun"
         app:layout_constraintTop_toBottomOf="@+id/txt_daftarakun">
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="Password"
+        android:hint="password"
         app:endIconMode="password_toggle"
         app:layout_constraintStart_toStartOf="@+id/txt_namapengguna"
         app:layout_constraintTop_toBottomOf="@+id/txt_namapengguna">

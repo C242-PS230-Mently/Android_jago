@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import id.co.mentalhealth.data.network.response.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -51,6 +52,25 @@ class UserPreferences constructor(private val dataStore: DataStore<Preferences>)
                 token
             }
     }
+
+    // Ambil data User dalam bentuk Flow<User>
+    fun getUser(): Flow<User> {
+        return dataStore.data
+            .map { preferences ->
+                val token = preferences[TOKEN_KEY] ?: ""
+                Log.d("UserPreferences", "Token ditemukan: $token")
+                if (token.isEmpty()) {
+                    throw IllegalStateException("Token tidak ditemukan. Pengguna belum login.")
+                }
+                User(token = token)
+            }
+    }
+
+    // Kelas data User untuk menyimpan informasi pengguna
+    data class User(
+        val token: String
+    )
+
 
 
     suspend fun clearToken() {

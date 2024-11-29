@@ -14,7 +14,7 @@ class QuestActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuestBinding
     private val questViewModel: QuestViewModel by viewModels {
-        QuestViewModelFactory(QuestionRepository(ApiConfig.getApiService()))
+        QuestViewModelFactory(QuestionRepository(ApiConfig.getApiService(),))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
