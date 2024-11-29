@@ -18,9 +18,6 @@
             android:name=".ui.quest.QuestActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.quest.optional.QuestionsActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.PsikologActivity"
             android:exported="false" />
         <activity

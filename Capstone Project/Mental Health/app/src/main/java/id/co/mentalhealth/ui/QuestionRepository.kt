@@ -1,11 +1,24 @@
 package id.co.mentalhealth.ui
 
 import android.util.Log
-import id.co.mentalhealth.data.UserPreferences
 import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.retrofit.ApiService
+import id.co.mentalhealth.data.pref.UserPreferences
 
 class QuestionRepository(private val apiService: ApiService,private val userPreferences: UserPreferences) {
+
+    companion object {
+        @Volatile
+        private var instance: QuestionRepository? = null
+        fun getInstance(
+            apiService: ApiService,
+            userPreferences: UserPreferences
+        ): QuestionRepository =
+            instance ?: synchronized(this) {
+                instance ?: QuestionRepository(apiService, userPreferences)
+            }.also { instance = it }
+    }
+
 
     // Fungsi untuk mengambil pertanyaan tanpa menggunakan token
     suspend fun getQuestions(): Result<QuestionResponse> {

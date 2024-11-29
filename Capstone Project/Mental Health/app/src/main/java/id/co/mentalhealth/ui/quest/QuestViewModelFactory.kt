@@ -1,7 +1,9 @@
 package id.co.mentalhealth.ui.quest
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import id.co.mentalhealth.di.Injection
 import id.co.mentalhealth.ui.QuestionRepository
 
 
@@ -19,7 +21,17 @@ class QuestViewModelFactory(private val questionRepository: QuestionRepository) 
     }
 
     companion object {
-
+        @Volatile
+        private var INSTANCE: QuestViewModelFactory? = null
+        @JvmStatic
+        fun getInstance(context: Context): QuestViewModelFactory {
+            if (INSTANCE == null) {
+                synchronized(QuestViewModelFactory::class.java) {
+                    INSTANCE = QuestViewModelFactory(Injection.provideQuestRepository(context))
+                }
+            }
+            return INSTANCE as QuestViewModelFactory
+        }
 
     }
 }
