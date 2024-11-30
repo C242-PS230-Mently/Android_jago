@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    tools:context=".ui.DetailActivity">
+
+    <com.db.williamchart.view.HorizontalBarChartView
+        android:id="@+id/barChartHorz"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:layout_margin="16dp"
+        app:chart_axis="y"
+        app:chart_barsRadius="8dp"
+        app:chart_labelsColor="@color/blue"
+        app:chart_labelsSize="16sp"
+        app:chart_labelsFont="@font/poppins_semibold"
+        app:chart_barsColor = "@color/pink"
+        app:chart_smoothLine = "true"
+        app:chart_barsBackgroundColor = "@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_depresi"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text="Depresi"-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_depresi_warna"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text=""-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_kecemasan"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text="Kecemasan"-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_kecemasan_warna"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text=""-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_bipolar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text="Bipolar"-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_bipolar_warna"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text=""-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_ocd"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text="O C D"-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_ocd_warna"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text=""-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_skizofrenia"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text="Skizofrenia"-->
+<!--            android:textSize="16sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_skizofrenia_warna"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text=""-->
+<!--            android:textSize="16sp" />-->
+
+<!--    </LinearLayout>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

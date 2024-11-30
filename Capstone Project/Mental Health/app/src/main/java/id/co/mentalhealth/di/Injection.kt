@@ -19,7 +19,12 @@ object Injection {
 
     fun provideQuestRepository(context: Context): QuestionRepository {
         val pref = UserPreferences.getInstance(context.dataStore)
-        val user = runBlocking { pref.getSession().first() }
+        val user =  runBlocking { pref.getSession().first() }
+        val token = user.token
+
+        if (token.isNullOrEmpty()) {
+            throw Exception("User token is missing.")
+        }
         val apiService = ApiConfig.getApiService(user.token)
         return QuestionRepository.getInstance(apiService, pref)
     }

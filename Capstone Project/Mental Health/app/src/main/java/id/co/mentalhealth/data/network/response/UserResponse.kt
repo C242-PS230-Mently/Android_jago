@@ -35,8 +35,12 @@ data class PredictionResponse(
 	val username: String,
 
 	@field:SerializedName("statusCode")
-	val statusCode: Int
+	val statusCode: Int,
+
+	@field:SerializedName("created_at")
+	val createdAt: String
 )
+
 
 data class Predictions(
 

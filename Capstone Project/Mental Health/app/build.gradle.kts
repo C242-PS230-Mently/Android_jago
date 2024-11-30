@@ -72,6 +72,10 @@ dependencies {
     // Untuk ViewModel dan LiveData yang lebih terintegrasi
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
+//    barchart
+    implementation("com.diogobernardino:williamchart:3.10.1")
+//    implementation ("com.github.SeptiawanAjiP:AndroidChartJS:1.0.5")
+
     // Profile
     implementation(libs.circleimageview)
     implementation(libs.androidx.exifinterface)
