@@ -19,6 +19,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         try {
             dataStore.edit { preferences ->
                 preferences[EMAIL_KEY] = user.email
+                preferences[ID_KEY] = user.userId
                 preferences[NAME_KEY] = user.name
                 preferences[TOKEN_KEY] = user.token
                 preferences[IS_LOGIN_KEY] = true
@@ -34,6 +35,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         return dataStore.data.map { preferences ->
             UserModel(
                 preferences[EMAIL_KEY] ?: "",
+                preferences[ID_KEY] ?: "",
                 preferences[NAME_KEY] ?: "",
                 preferences[TOKEN_KEY] ?: "",
                 preferences[IS_LOGIN_KEY] ?: false
@@ -57,6 +59,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private var INSTANCE: UserPreferences? = null
 
         private val EMAIL_KEY = stringPreferencesKey("email")
+        private val ID_KEY = stringPreferencesKey("id")
         private val NAME_KEY = stringPreferencesKey("name")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")

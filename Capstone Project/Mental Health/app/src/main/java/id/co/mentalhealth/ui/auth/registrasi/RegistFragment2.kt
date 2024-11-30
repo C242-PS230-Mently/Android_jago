@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.data.pref.UserPreferences
 import id.co.mentalhealth.data.pref.dataStore
@@ -19,6 +20,7 @@ import id.co.mentalhealth.ui.auth.AuthViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
 import id.co.mentalhealth.ui.auth.login.LoginActivity
 import kotlinx.coroutines.NonCancellable.start
+import kotlinx.coroutines.launch
 
 class RegistFragment2 : Fragment() {
     private val viewModel by viewModels<AuthViewModel> {
@@ -74,10 +76,10 @@ class RegistFragment2 : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
-        binding.btnDaftar.setOnClickListener { register() }
+        binding.btnDaftar.setOnClickListener { lifecycleScope.launch { register() } }
     }
 
-    private fun register() {
+    private suspend fun register() {
 
         val fullName = arguments?.getString("fullName") ?: ""
         val email = arguments?.getString("email") ?: ""

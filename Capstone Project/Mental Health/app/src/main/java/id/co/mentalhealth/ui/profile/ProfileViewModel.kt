@@ -1,13 +1,8 @@
 package id.co.mentalhealth.ui.profile
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.io.File
 
-class ProfileViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is profile Fragment"
-    }
-    val text: LiveData<String> = _text
+class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
+    suspend fun uploadImage(file: File) = repository.uploadImage(file)
 }

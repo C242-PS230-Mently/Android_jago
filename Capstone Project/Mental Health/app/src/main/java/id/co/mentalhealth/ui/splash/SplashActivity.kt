@@ -82,18 +82,18 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkLoginStatus() {
-            viewModel.getSession().observe(this) { user ->
-                if (!user.isLogin) {
-                    Log.d("SplashActivity", "Tidak Login. Mengarahkan ke LoginActivity.")
-                    navigateToLogin()
-                } else {
-                    Log.d(
-                        "SplashActivity",
-                        "Login. Mengarahkan ke HomePage_Activity."
-                    )
-                    navigateToHome()
-                }
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                Log.d("SplashActivity", "Tidak Login. Mengarahkan ke LoginActivity.")
+                navigateToLogin()
+            } else {
+                Log.d(
+                    "SplashActivity",
+                    "Login. Mengarahkan ke HomePage_Activity."
+                )
+                navigateToHome()
             }
+        }
     }
 
 

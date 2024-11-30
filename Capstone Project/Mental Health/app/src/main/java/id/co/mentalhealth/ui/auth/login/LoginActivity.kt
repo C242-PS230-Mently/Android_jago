@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
         setupAnimation()
 
-        binding.btnLogin.setOnClickListener { login() }
+        binding.btnLogin.setOnClickListener { lifecycleScope.launch { login() } }
         binding.btnBack.setOnClickListener { finish() }
 
         binding.tvBuatAkun.setOnClickListener {
@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun login() {
+    private suspend fun login() {
         val identifier = binding.edtNamapengguna.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
 
@@ -85,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
                             is ResultState.Success -> {
                                 val name = response.data.user?.fullName.toString()
                                 val token = response.data.accessToken.toString()
+                                val id = response.data.user?.id.toString()
                                 AlertDialog.Builder(this).apply {
                                     setTitle("Yeah!")
                                     setMessage("Anda berhasil login dengan email atau username $identifier")
@@ -98,7 +99,7 @@ class LoginActivity : AppCompatActivity() {
                                     create()
                                     show()
                                 }
-                                viewModel.saveSession(UserModel(identifier, name, token))
+                                viewModel.saveSession(UserModel(id, identifier, name, token))
                                 showLoading(false)
                             }
 

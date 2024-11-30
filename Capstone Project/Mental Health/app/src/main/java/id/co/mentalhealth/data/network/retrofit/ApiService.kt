@@ -4,11 +4,16 @@ import id.co.mentalhealth.data.network.response.LoginResponse
 import id.co.mentalhealth.data.network.response.PredictionResponse
 import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
+import id.co.mentalhealth.data.network.response.PhotoResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 
 interface ApiService {
 
@@ -43,4 +48,10 @@ interface ApiService {
         @Field("Q16") q16: Int, @Field("Q17") q17: Int, @Field("Q18") q18: Int, @Field("Q19") q19: Int, @Field("Q20") q20: Int,
         @Field("Q21") q21: Int, @Field("Q22") q22: Int, @Field("Q23") q23: Int, @Field("Q24") q24: Int, @Field("Q25") q25: Int
     ): Call<PredictionResponse>
+
+    @Multipart
+    @POST("/user/upload")
+    suspend fun uploadImage(
+        @Part file: MultipartBody.Part,
+    ): PhotoResponse
 }

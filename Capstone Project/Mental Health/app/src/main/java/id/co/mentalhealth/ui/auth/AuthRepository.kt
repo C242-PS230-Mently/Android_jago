@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 
 class AuthRepository(private val apiService: ApiService, private val userPreferences: UserPreferences) {
-    fun register(fullName: String, email: String, age: String, gender: String, username: String, password: String) = liveData {
+    suspend fun register(fullName: String, email: String, age: String, gender: String, username: String, password: String) = liveData {
         emit(ResultState.Loading)
         try {
             val successResponse = apiService.register(fullName, email, age, gender, username, password)
@@ -20,11 +20,11 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
-            emit(ResultState.Error(errorResponse.msg.toString()))
+            emit(ResultState.Error(errorResponse.msg))
         }
     }
 
-    fun login(email: String, password: String) = liveData {
+    suspend fun login(email: String, password: String) = liveData {
         emit(ResultState.Loading)
         try {
             val successResponse = apiService.login(email, password)

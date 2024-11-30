@@ -71,4 +71,9 @@ dependencies {
 
     // Untuk ViewModel dan LiveData yang lebih terintegrasi
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+
+    // Profile
+    implementation(libs.circleimageview)
+    implementation(libs.androidx.exifinterface)
+
 }
