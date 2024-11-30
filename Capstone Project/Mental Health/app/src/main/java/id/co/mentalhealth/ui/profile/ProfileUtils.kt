@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-private const val MAXIMAL_SIZE = 2000000 //1 MB
+private const val MAXIMAL_SIZE = 500000 //0.5 MB
 private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
 
@@ -70,7 +70,7 @@ fun uriToFile(imageUri: Uri, context: Context): File {
     return myFile
 }
 
-suspend fun File.reduceFileImage(): File = withContext(Dispatchers.IO) {
+fun File.reduceFileImage(): File {
     val file = this@reduceFileImage
     val bitmap = BitmapFactory.decodeFile(file.path).getRotatedBitmap(file)
     var compressQuality = 100
@@ -83,7 +83,7 @@ suspend fun File.reduceFileImage(): File = withContext(Dispatchers.IO) {
         compressQuality -= 5
     } while (streamLength > MAXIMAL_SIZE)
     bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
-    file
+    return file
 }
 
 fun Bitmap.getRotatedBitmap(file: File): Bitmap? {
@@ -99,7 +99,7 @@ fun Bitmap.getRotatedBitmap(file: File): Bitmap? {
     }
 }
 
-fun rotateImage(source: Bitmap, angle: Float): Bitmap? {
+fun rotateImage(source: Bitmap, angle: Float): Bitmap {
     val matrix = Matrix()
     matrix.postRotate(angle)
     return Bitmap.createBitmap(

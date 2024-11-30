@@ -15,7 +15,7 @@ import java.io.File
 class ProfileRepository private constructor(
     private val apiService: ApiService
 ) {
-    suspend fun uploadImage(file: File) = liveData {
+    fun uploadImage(file: File) = liveData {
         emit(ResultState.Loading)
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
         val multipartBody = MultipartBody.Part.createFormData(
@@ -23,13 +23,11 @@ class ProfileRepository private constructor(
             file.name,
             requestImageFile
         )
+        val response = apiService.uploadImage(multipartBody)
         try {
-            val successResponse = apiService.uploadImage(multipartBody)
-            emit(ResultState.Success(successResponse))
+            emit(ResultState.Success(response))
         } catch (e: HttpException) {
-            val errorBody = e.response()?.errorBody()?.string()
-            val errorResponse = Gson().fromJson(errorBody, PhotoResponse::class.java)
-            emit(ResultState.Error(errorResponse.message.toString()))
+            emit(ResultState.Error(response.message.toString()))
         }
     }
 
