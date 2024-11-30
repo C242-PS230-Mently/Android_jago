@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -55,9 +56,22 @@ class DetailProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
         showImage()
 
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
+        if (ContextCompat.checkSelfPermission(
+                this,
+                REQUIRED_PERMISSION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSION)) {
+                Toast.makeText(
+                    this,
+                    "Aplikasi membutuhkan akses kamera untuk mengambil foto",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                requestPermissionLauncher.launch(REQUIRED_PERMISSION)
+            }
         }
+
 
         binding.btnBack.setOnClickListener { finish() }
         binding.fabProfileImage.setOnClickListener { showBottomSheet() }
@@ -79,7 +93,11 @@ class DetailProfileActivity : AppCompatActivity() {
 
     private fun startCamera() {
         currentImageUri = getImageUri(this)
-        launcherIntentCamera.launch(currentImageUri!!)
+        currentImageUri?.let {
+            launcherIntentCamera.launch(it)
+        } ?: run {
+            Toast.makeText(this, "Gagal memulai kamera", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private val launcherIntentCamera = registerForActivityResult(
@@ -103,7 +121,7 @@ class DetailProfileActivity : AppCompatActivity() {
             currentImageUri = uri
             showImage()
         } else {
-            Toast.makeText(this, "Pilih gambar dulu", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Tidak ada gambar yang terpilih", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -115,7 +133,7 @@ class DetailProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImage() {
+    private suspend fun uploadImage() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this).reduceFileImage()
             Log.d("Image File", "showImage: ${imageFile.path}")
@@ -141,14 +159,26 @@ class DetailProfileActivity : AppCompatActivity() {
                         is ResultState.Error -> {
                             AlertDialog.Builder(this).apply {
                                 setTitle("Hmm")
-                                setMessage("Foto gagal diupload dengan error ${response.error}")
-                                setPositiveButton("OK", null)
+                                setMessage("Foto gagal diupload dengan error ${response.error}. Mau coba lagi")
+                                setPositiveButton("Coba lagi") { _, _ ->
+                                    lifecycleScope.launch { uploadImage() }
+                                }
+                                setNegativeButton("Batal", null)
                                 create()
                                 show()
                             }
                             showLoading(false)
                         }
                     }
+                } else {
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Hmm")
+                        setMessage("Foto gagal diupload.")
+                        setPositiveButton("OK", null)
+                        create()
+                        show()
+                    }
+                    showLoading(false)
                 }
             }
         } ?: showToast(getString(R.string.empty_image_warning))

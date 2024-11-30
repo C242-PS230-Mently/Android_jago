@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-private const val MAXIMAL_SIZE = 500000 //0.5 MB
+private const val MAXIMAL_SIZE = 1000000 //1 MB
 private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 private val timeStamp: String = SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(Date())
 
@@ -58,7 +58,7 @@ fun createCustomTempFile(context: Context): File {
     return File.createTempFile(timeStamp, ".jpg", filesDir)
 }
 
-fun uriToFile(imageUri: Uri, context: Context): File {
+suspend fun uriToFile(imageUri: Uri, context: Context): File = withContext(Dispatchers.IO) {
     val myFile = createCustomTempFile(context)
     val inputStream = context.contentResolver.openInputStream(imageUri) as InputStream
     val outputStream = FileOutputStream(myFile)
@@ -67,10 +67,10 @@ fun uriToFile(imageUri: Uri, context: Context): File {
     while (inputStream.read(buffer).also { length = it } > 0) outputStream.write(buffer, 0, length)
     outputStream.close()
     inputStream.close()
-    return myFile
+    myFile
 }
 
-fun File.reduceFileImage(): File {
+suspend fun File.reduceFileImage(): File = withContext(Dispatchers.IO) {
     val file = this@reduceFileImage
     val bitmap = BitmapFactory.decodeFile(file.path).getRotatedBitmap(file)
     var compressQuality = 100
@@ -83,7 +83,7 @@ fun File.reduceFileImage(): File {
         compressQuality -= 5
     } while (streamLength > MAXIMAL_SIZE)
     bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
-    return file
+    file
 }
 
 fun Bitmap.getRotatedBitmap(file: File): Bitmap? {

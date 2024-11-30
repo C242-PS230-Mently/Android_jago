@@ -8,26 +8,27 @@ import id.co.mentalhealth.data.network.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import java.io.File
 
 class ProfileRepository private constructor(
     private val apiService: ApiService
 ) {
-    fun uploadImage(file: File) = liveData {
+    suspend fun uploadImage(file: File) = liveData {
         emit(ResultState.Loading)
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
         val multipartBody = MultipartBody.Part.createFormData(
-            "photo",
+            "file",
             file.name,
             requestImageFile
         )
-        val response = apiService.uploadImage(multipartBody)
         try {
-            emit(ResultState.Success(response))
+            val successResponse = apiService.uploadImage(multipartBody)
+            emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
-            emit(ResultState.Error(response.message.toString()))
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, PhotoResponse::class.java)
+            emit(ResultState.Error(errorResponse.message.toString()))
         }
     }
 
