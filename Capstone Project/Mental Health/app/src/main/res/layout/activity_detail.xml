@@ -5,25 +5,37 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dp"
+    android:paddingStart="24dp"
+    android:paddingTop="24dp"
+    android:paddingEnd="24dp"
     tools:context=".ui.DetailActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Hasil Test Anda"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/barChartHorz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.db.williamchart.view.HorizontalBarChartView
         android:id="@+id/barChartHorz"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginTop="60dp"
-        android:layout_margin="16dp"
         app:chart_axis="y"
+        app:chart_barsBackgroundColor="@color/blue"
+        app:chart_barsColor="@color/pink"
         app:chart_barsRadius="8dp"
         app:chart_labelsColor="@color/blue"
-        app:chart_labelsSize="16sp"
         app:chart_labelsFont="@font/poppins_semibold"
-        app:chart_barsColor = "@color/pink"
-        app:chart_smoothLine = "true"
-        app:chart_barsBackgroundColor = "@color/blue"
+        app:chart_labelsSize="14sp"
+        app:chart_smoothLine="true"
+        app:chart_spacing = "12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

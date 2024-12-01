@@ -5,8 +5,8 @@
     android:id="@+id/container_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="36dp"
-    android:paddingEnd="36dp"
+    android:paddingStart="34dp"
+    android:paddingEnd="24dp"
     android:paddingTop="24dp"
     android:paddingBottom="24dp"
     tools:context=".ui.auth.registrasi.Registrasi_Activity">

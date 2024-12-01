@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="36dp"
+    android:paddingStart="24dp"
     android:paddingTop="24dp"
-    android:paddingEnd="36dp"
+    android:paddingEnd="24dp"
     tools:context=".ui.profile.DetailProfileActivity">
 
     <ImageView
@@ -28,7 +28,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="Detail Informasi"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

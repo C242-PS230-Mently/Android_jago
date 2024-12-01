@@ -1,13 +1,14 @@
 package id.co.mentalhealth.ui.auth
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.google.gson.Gson
-import id.co.mentalhealth.data.pref.UserPreferences
 import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.data.network.response.LoginResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
 import id.co.mentalhealth.data.network.retrofit.ApiService
 import id.co.mentalhealth.data.pref.UserModel
+import id.co.mentalhealth.data.pref.UserPreferences
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 
@@ -38,6 +39,7 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
 
     suspend fun saveSession(user: UserModel) {
         userPreferences.saveSession(user)
+        Log.d("SessionModel", "Session saved: $user")
     }
 
     fun getSession(): Flow<UserModel> {

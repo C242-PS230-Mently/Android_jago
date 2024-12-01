@@ -5,8 +5,8 @@
     android:id="@+id/profile_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="36dp"
-    android:paddingEnd="36dp"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
     android:paddingTop="24dp"
     tools:context=".ui.profile.ProfileFragment">
 

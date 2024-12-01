@@ -1,12 +1,15 @@
 package id.co.mentalhealth.data.network.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class QuestionResponse(
 
 	@field:SerializedName("questions")
 	val questions: List<QuestionsItem>
 )
+
 
 data class QuestionsItem(
 
@@ -41,7 +44,7 @@ data class PredictionResponse(
 	val createdAt: String
 )
 
-
+@Parcelize
 data class Predictions(
 
 	@field:SerializedName("Level Bipolar")
@@ -58,4 +61,4 @@ data class Predictions(
 
 	@field:SerializedName("Level Skizofrenia")
 	val levelSkizofrenia: String
-)
+): Parcelable

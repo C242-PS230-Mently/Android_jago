@@ -5,11 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="36dp"
-    android:paddingEnd="36dp"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
     android:paddingTop="24dp"
     android:paddingBottom="24dp"
     tools:context=".ui.quest.QuestActivity">
+
+    <ProgressBar
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_listPsi"
@@ -40,6 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="1/25"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/cd_listPsi"
         app:layout_constraintStart_toStartOf="@+id/cd_listPsi"
         app:layout_constraintTop_toBottomOf="@+id/cd_listPsi" />
@@ -73,8 +86,9 @@
             android:checked="false"
             android:enabled="true"
             android:padding="8dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Tinggi" />
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Sering"
+            android:textSize="14sp"/>
 
             <RadioButton
                 android:id="@+id/rd2"
@@ -83,8 +97,9 @@
                 android:checked="false"
                 android:enabled="true"
                 android:padding="8dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Sedang" />
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Kadang-Kadang"
+                android:textSize="14sp"/>
             <RadioButton
                 android:id="@+id/rd3"
                 android:layout_width="wrap_content"
@@ -92,8 +107,9 @@
                 android:checked="false"
                 android:enabled="true"
                 android:padding="8dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Rendah" />
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Jarang"
+                android:textSize="14sp"/>
     </RadioGroup>
 
     <LinearLayout
@@ -107,8 +123,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Kembali"
+        android:padding="8dp"
         android:layout_weight="1"
         android:layout_margin="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -118,8 +137,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Selanjutnya"
+        android:padding="8dp"
         android:layout_weight="1"
         android:layout_margin="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

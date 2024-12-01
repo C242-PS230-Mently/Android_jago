@@ -4,7 +4,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="8dp"
     android:elevation="4dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
@@ -23,16 +22,6 @@
             android:cropToPadding="true"
             tools:srcCompat="@tools:sample/avatars"
             android:contentDescription="workshop" />
-
-        <TextView
-            android:id="@+id/tvEventTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="judul event"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            android:padding="16dp"
-            android:textStyle="bold" />
     </LinearLayout>
 
 

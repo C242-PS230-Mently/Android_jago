@@ -1,39 +1,54 @@
 package id.co.mentalhealth.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import id.co.mentalhealth.data.network.response.Predictions
 import id.co.mentalhealth.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
-    private var _binding: ActivityDetailBinding?=null
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityDetailBinding
 
     companion object {
-        private val barSetHorz = listOf(
-            "Bipolar" to 4f,
-            "Depresi" to 5f,
-            "Kecemasan" to 6f,
-            "OCD" to 3f,
-            "Skizofrenia" to 1f
-        )
+
+
 
         private val animationDurazion = 1000L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.apply {
-            barChartHorz.animation.duration = animationDurazion
-            barChartHorz.animate(barSetHorz)
+
+        val predictions: Predictions? = intent.getParcelableExtra<Predictions>("predictions")
+        Log.d("predictions", predictions.toString())
+
+        predictions?.let {
+            val updateBarSet = listOf(
+                "Skizofrenia" to getLevelValue(it.levelSkizofrenia),
+                "OCD" to getLevelValue(it.levelOCD),
+                "Kecemasan" to getLevelValue(it.levelKecemasan),
+                "Depresi" to getLevelValue(it.levelDepresi),
+                "Bipolar" to getLevelValue(it.levelBipolar)
+            )
+            binding.apply {
+                barChartHorz.animation.duration = animationDurazion
+                barChartHorz.animate(updateBarSet)
+            }
         }
+
+
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun getLevelValue(level: String): Float {
+        return when (level) {
+            "Tinggi" -> 6f
+            "Sedang" -> 4f
+            "Rendah" -> 2f
+            else -> 0f
+        }
     }
 }

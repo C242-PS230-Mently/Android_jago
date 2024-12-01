@@ -4,7 +4,7 @@ import android.content.Context
 import id.co.mentalhealth.data.network.retrofit.ApiConfig
 import id.co.mentalhealth.data.pref.UserPreferences
 import id.co.mentalhealth.data.pref.dataStore
-import id.co.mentalhealth.ui.QuestionRepository
+import id.co.mentalhealth.ui.quest.QuestionRepository
 import id.co.mentalhealth.ui.auth.AuthRepository
 import id.co.mentalhealth.ui.profile.ProfileRepository
 import kotlinx.coroutines.flow.first

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="36dp"
-    android:paddingEnd="36dp"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
     android:paddingTop="24dp"
     tools:context=".ui.history.HistoryFragment">
 
@@ -23,7 +23,7 @@
             android:padding="24dp"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:fontFamily="@font/poppins_extrabold"
+            android:fontFamily="@font/poppins_bold"
             android:text="Hasil Konsultasi Anda"
             android:textAlignment="center"/>
     </androidx.cardview.widget.CardView>

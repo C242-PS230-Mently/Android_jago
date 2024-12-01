@@ -1,4 +1,4 @@
-package id.co.mentalhealth.ui
+package id.co.mentalhealth.ui.quest
 
 import android.util.Log
 import id.co.mentalhealth.data.network.response.PredictionResponse
@@ -22,10 +22,9 @@ class QuestionRepository(private val apiService: ApiService,private val userPref
     }
 
 
-    // Fungsi untuk mengambil pertanyaan tanpa menggunakan token
     suspend fun getQuestions(): Result<QuestionResponse> {
         return try {
-            val response = apiService.getQuestions() // Memanggil suspend function
+            val response = apiService.getQuestions()
             Result.success(response)
         } catch (e: Exception) {
             Log.e("UserRepository", "Gagal mengambil pertanyaan: ${e.message}", e)
@@ -33,7 +32,6 @@ class QuestionRepository(private val apiService: ApiService,private val userPref
         }
     }
 
-    // Fungsi untuk melakukan prediksi berdasarkan jawaban pertanyaan
     suspend fun predict(
         q1: Int, q2: Int, q3: Int, q4: Int, q5: Int,
         q6: Int, q7: Int, q8: Int, q9: Int, q10: Int,
@@ -60,40 +58,4 @@ class QuestionRepository(private val apiService: ApiService,private val userPref
             Result.failure(e)
         }
     }
-
-
-
-//    suspend fun sendPrediction(predictRequest: PredictRequest): Response<PredictionResponse> {
-//        Log.d("SendPrediction", "Sending request with data: $predictRequest")
-//
-//        return try {
-//            // Mengirimkan request ke API
-//            val response = apiService.predict(predictRequest)
-//
-//            // Log status response
-//            if (response.isSuccessful) {
-//                Log.d("SendPrediction", "API Response Success: ${response.body()}")
-//            } else {
-//                Log.w("SendPrediction", "API Response Failed: ${response.errorBody()?.string()}")
-//            }
-//
-//            // Kembalikan response
-//            response
-//        } catch (e: Exception) {
-//            // Log jika terjadi error
-//            Log.e("SendPrediction", "Error during API call: ${e.message}", e)
-//
-//            // Kembalikan response kosong jika error
-//            Response.error<PredictionResponse>(500, ResponseBody.create(null, ""))
-//        }
-//
-//    }
-
-
-//    mengirimnya dalam bentuk JSON,
-//    suspend fun sendPrediction(answersMap: Map<Int, Int>): Response<PredictionResponse> {
-//    val answers = answersMap.mapKeys { "Q${it.key}" }
-//    val request = PredictRequestBody(answers)
-//    return apiService.predict(request)
-//
 }

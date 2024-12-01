@@ -1,12 +1,11 @@
 package id.co.mentalhealth.data.network.retrofit
 
 import id.co.mentalhealth.data.network.response.LoginResponse
+import id.co.mentalhealth.data.network.response.PhotoResponse
 import id.co.mentalhealth.data.network.response.PredictionResponse
 import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
-import id.co.mentalhealth.data.network.response.PhotoResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -39,8 +38,6 @@ interface ApiService {
     @GET("/user/questions")
     suspend fun getQuestions(): QuestionResponse
 
-//    @POST("/user/predict")
-//    suspend fun predict(@Body request: PredictRequest): Response<PredictionResponse>
 
     @FormUrlEncoded
     @POST("/user/predict")
