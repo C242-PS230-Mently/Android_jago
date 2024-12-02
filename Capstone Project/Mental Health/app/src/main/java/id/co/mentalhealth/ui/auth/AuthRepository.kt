@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.google.gson.Gson
 import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.data.network.response.LoginResponse
+import id.co.mentalhealth.data.network.response.PasswordResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
 import id.co.mentalhealth.data.network.retrofit.ApiService
 import id.co.mentalhealth.data.pref.UserModel
@@ -35,6 +36,24 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
             emit(ResultState.Error(errorResponse.msg))
+        }
+    }
+
+    suspend fun forgotPassword(email: String): Result<PasswordResponse> {
+        return try {
+            val response = apiService.forgotPassword(email)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun resetPassword(otp: String, newPassword: String): Result<PasswordResponse> {
+        return try {
+            val response = apiService.resetPassword(otp, newPassword)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 

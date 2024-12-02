@@ -35,3 +35,8 @@ data class User(
     @field:SerializedName("username")
     val username: String
 )
+
+data class PasswordResponse(
+    @field:SerializedName("msg")
+    val msg: String
+)

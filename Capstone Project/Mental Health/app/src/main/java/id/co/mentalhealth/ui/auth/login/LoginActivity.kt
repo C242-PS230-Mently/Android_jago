@@ -4,26 +4,19 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.data.pref.UserModel
-import id.co.mentalhealth.data.pref.UserPreferences
-import id.co.mentalhealth.data.pref.dataStore
 import id.co.mentalhealth.databinding.ActivityLoginBinding
-import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.auth.AuthViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
-import id.co.mentalhealth.ui.home.HomePage_Activity
-import id.co.mentalhealth.ui.password.LupaPwActivity
+import id.co.mentalhealth.ui.auth.password.LupaPwActivity
 import id.co.mentalhealth.ui.auth.registrasi.Registrasi_Activity
-import kotlinx.coroutines.NonCancellable.start
+import id.co.mentalhealth.ui.home.HomePage_Activity
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {

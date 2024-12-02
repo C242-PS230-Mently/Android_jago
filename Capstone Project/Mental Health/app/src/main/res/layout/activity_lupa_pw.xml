@@ -8,7 +8,7 @@
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
     android:paddingTop="24dp"
-    tools:context=".ui.password.LupaPwActivity">
+    tools:context=".ui.auth.password.LupaPwActivity">
 
     <ImageView
         android:id="@+id/btnBack"

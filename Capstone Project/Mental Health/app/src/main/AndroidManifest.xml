@@ -30,10 +30,10 @@
             android:name=".ui.psikolog.PsikologActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.password.LupaPwActivity"
+            android:name=".ui.auth.password.LupaPwActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.password.ResetPwActivity"
+            android:name=".ui.auth.password.ResetPwActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.DetailProfileActivity"
