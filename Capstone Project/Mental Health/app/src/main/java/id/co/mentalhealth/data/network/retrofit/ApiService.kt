@@ -1,10 +1,12 @@
 package id.co.mentalhealth.data.network.retrofit
 
+import id.co.mentalhealth.data.network.response.HistoryResponse
 import id.co.mentalhealth.data.network.response.LoginResponse
 import id.co.mentalhealth.data.network.response.PhotoResponse
 import id.co.mentalhealth.data.network.response.PredictionResponse
 import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
+import id.co.mentalhealth.data.network.response.WorkshopResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Field
@@ -34,10 +36,9 @@ interface ApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ): RegisterResponse
-
+//    Question
     @GET("/user/questions")
     suspend fun getQuestions(): QuestionResponse
-
 
     @FormUrlEncoded
     @POST("/user/predict")
@@ -49,9 +50,18 @@ interface ApiService {
         @Field("Q21") q21: Int, @Field("Q22") q22: Int, @Field("Q23") q23: Int, @Field("Q24") q24: Int, @Field("Q25") q25: Int
     ): Response<PredictionResponse>
 
+    @GET("/user/history")
+    suspend fun getHistory(): HistoryResponse
+
+//    Profile
     @Multipart
     @POST("/user/upload")
     suspend fun uploadImage(
         @Part file: MultipartBody.Part,
     ): PhotoResponse
+
+
+//    dashboard
+    @GET("/user/dashboard/workshop")
+    suspend fun getWorkshop(): WorkshopResponse
 }

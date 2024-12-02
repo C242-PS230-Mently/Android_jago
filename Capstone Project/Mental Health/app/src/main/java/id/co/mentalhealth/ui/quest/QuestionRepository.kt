@@ -1,6 +1,7 @@
 package id.co.mentalhealth.ui.quest
 
 import android.util.Log
+import id.co.mentalhealth.data.network.response.HistoryResponse
 import id.co.mentalhealth.data.network.response.PredictionResponse
 import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.retrofit.ApiService
@@ -27,7 +28,7 @@ class QuestionRepository(private val apiService: ApiService,private val userPref
             val response = apiService.getQuestions()
             Result.success(response)
         } catch (e: Exception) {
-            Log.e("UserRepository", "Gagal mengambil pertanyaan: ${e.message}", e)
+            Log.e("QuestionRepository", "Gagal mengambil pertanyaan: ${e.message}", e)
             Result.failure(e)
         }
     }
@@ -57,5 +58,17 @@ class QuestionRepository(private val apiService: ApiService,private val userPref
             Log.e("QuestionRepository", "Gagal melakukan prediksi: ${e.message}", e)
             Result.failure(e)
         }
+    }
+
+    suspend fun getHistory(): Result<HistoryResponse>{
+        return try {
+            val response = apiService.getHistory()
+            Log.d("QuestionRepository", "Riwayat berhasil: $response")
+            Result.success(response)
+        }catch (e: Exception){
+            Log.e("QuestionRepository", "Gagal mengambil Riwayat: ${e.message}", e)
+            Result.failure(e)
+        }
+
     }
 }

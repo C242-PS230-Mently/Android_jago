@@ -8,7 +8,7 @@
     android:paddingStart="24dp"
     android:paddingTop="24dp"
     android:paddingEnd="24dp"
-    tools:context=".ui.DetailActivity">
+    tools:context=".ui.quest.DetailActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,6 +20,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Tanggal"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/barChartHorz"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.db.williamchart.view.HorizontalBarChartView
         android:id="@+id/barChartHorz"

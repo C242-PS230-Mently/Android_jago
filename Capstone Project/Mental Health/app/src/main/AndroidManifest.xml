@@ -18,7 +18,7 @@
         android:theme="@style/Theme.MentalHealth"
         tools:targetApi="31">
         <activity
-            android:name=".ui.DetailActivity"
+            android:name=".ui.quest.DetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.quest.QuestActivity"

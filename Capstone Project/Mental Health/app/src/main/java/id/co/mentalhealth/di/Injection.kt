@@ -4,9 +4,10 @@ import android.content.Context
 import id.co.mentalhealth.data.network.retrofit.ApiConfig
 import id.co.mentalhealth.data.pref.UserPreferences
 import id.co.mentalhealth.data.pref.dataStore
-import id.co.mentalhealth.ui.quest.QuestionRepository
 import id.co.mentalhealth.ui.auth.AuthRepository
+import id.co.mentalhealth.ui.home.HomeRepository
 import id.co.mentalhealth.ui.profile.ProfileRepository
+import id.co.mentalhealth.ui.quest.QuestionRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -15,6 +16,12 @@ object Injection {
         val pref = UserPreferences.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiService()
         return AuthRepository.getInstance(apiService, pref)
+    }
+
+    fun provideDashboardRepository(context: Context): HomeRepository {
+        val pref = UserPreferences.getInstance(context.dataStore)
+        val apiService = ApiConfig.getApiService()
+        return HomeRepository.getInstance(apiService, pref)
     }
 
     fun provideQuestRepository(context: Context): QuestionRepository {

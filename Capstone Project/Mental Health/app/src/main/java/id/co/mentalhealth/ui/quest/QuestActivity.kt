@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.R
 import id.co.mentalhealth.data.network.response.QuestionsItem
 import id.co.mentalhealth.databinding.ActivityQuestBinding
-import id.co.mentalhealth.ui.DetailActivity
 
 class QuestActivity : AppCompatActivity() {
 
@@ -86,18 +85,18 @@ class QuestActivity : AppCompatActivity() {
     private fun displaySelectedAnswer() {
         val selectedAnswer = questViewModel.getSelectedAnswer()
         when (selectedAnswer) {
-            1 -> binding.radioGroup.check(R.id.rd1)
+            3 -> binding.radioGroup.check(R.id.rd1)
             2 -> binding.radioGroup.check(R.id.rd2)
-            3 -> binding.radioGroup.check(R.id.rd3)
+            1 -> binding.radioGroup.check(R.id.rd3)
             else -> binding.radioGroup.clearCheck()
         }
     }
 
     private fun getSelectedAnswerFromRadioGroup(): Int? {
         return when (binding.radioGroup.checkedRadioButtonId) {
-            R.id.rd1 -> 1
+            R.id.rd1 -> 3
             R.id.rd2 -> 2
-            R.id.rd3 -> 3
+            R.id.rd3 -> 1
             else -> null
         }
     }

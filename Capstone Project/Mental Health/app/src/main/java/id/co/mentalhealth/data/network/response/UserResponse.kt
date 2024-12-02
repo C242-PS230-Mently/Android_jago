@@ -23,6 +23,8 @@ data class QuestionsItem(
 	val questionId: Int
 )
 
+//history item
+@Parcelize
 data class PredictionResponse(
 
 	@field:SerializedName("user_id")
@@ -42,7 +44,7 @@ data class PredictionResponse(
 
 	@field:SerializedName("created_at")
 	val createdAt: String
-)
+): Parcelable
 
 @Parcelize
 data class Predictions(

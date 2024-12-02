@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.co.mentalhealth.data.network.response.Predictions
+import id.co.mentalhealth.data.network.response.PredictionResponse
 import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.response.QuestionsItem
 import kotlinx.coroutines.launch
@@ -21,8 +21,8 @@ class QuestViewModel(private val questionRepository: QuestionRepository) : ViewM
     private val _answers = MutableLiveData<MutableList<Int>>().apply { value = MutableList(25) { 0 }  }
     val answers: LiveData<MutableList<Int>> get() = _answers
 
-    private val _predictionResult = MutableLiveData<Result<Predictions>>() // Ganti String dengan tipe hasil yang sesuai
-    val predictionResult: LiveData<Result<Predictions>> get() = _predictionResult
+    private val _predictionResult = MutableLiveData<Result<PredictionResponse>>() // Ganti String dengan tipe hasil yang sesuai
+    val predictionResult: LiveData<Result<PredictionResponse>> get() = _predictionResult
 
 
     fun fetchQuestions() {
@@ -84,10 +84,9 @@ class QuestViewModel(private val questionRepository: QuestionRepository) : ViewM
                 )
                 if (result.isSuccess) {
                     val predictionResponse = result.getOrNull()
-                    val predictions = predictionResponse?.predictions
-                    if (predictions != null){
-                        _predictionResult.value = Result.success(predictions)
-                        Log.d("QuestViewModel", "Prediksi berhasil: $predictions")
+                    if (predictionResponse != null){
+                        _predictionResult.value = Result.success(predictionResponse)
+                        Log.d("QuestViewModel", "Prediksi berhasil: $predictionResponse")
                     }
                     Log.d("QuestViewModel", "Prediksi berhasil")
                 } else {
