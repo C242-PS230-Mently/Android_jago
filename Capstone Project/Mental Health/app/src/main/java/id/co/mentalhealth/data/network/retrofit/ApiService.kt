@@ -1,6 +1,7 @@
 package id.co.mentalhealth.data.network.retrofit
 
 import id.co.mentalhealth.data.network.response.ArticleResponse
+import id.co.mentalhealth.data.network.response.DoctorsResponse
 import id.co.mentalhealth.data.network.response.HistoryResponse
 import id.co.mentalhealth.data.network.response.LoginResponse
 import id.co.mentalhealth.data.network.response.PhotoResponse
@@ -68,4 +69,7 @@ interface ApiService {
 
     @GET("/user/dashboard/article")
     suspend fun getArticle(): ArticleResponse
+
+    @GET("/user/doctors")
+    suspend fun getDoctors(): DoctorsResponse
 }

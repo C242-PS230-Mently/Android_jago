@@ -8,7 +8,7 @@
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
     android:paddingTop="24dp"
-    tools:context=".ui.PsikologActivity">
+    tools:context=".ui.psikolog.PsikologActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_listPsi"
@@ -30,7 +30,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/tv_history"
+        android:id="@+id/tv_doctor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rekomendasi Psikolog"
@@ -40,13 +40,13 @@
         app:layout_constraintTop_toBottomOf="@id/cd_listPsi"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_history_recycler"
+        android:id="@+id/list_doctor_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_history"
+        app:layout_constraintTop_toBottomOf="@id/tv_doctor"
         tools:listitem="@layout/item_list_psikolog"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

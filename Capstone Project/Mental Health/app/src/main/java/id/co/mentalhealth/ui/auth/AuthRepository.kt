@@ -29,6 +29,7 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
         emit(ResultState.Loading)
         try {
             val successResponse = apiService.login(email, password)
+            Log.d("AuthRepository", "Login Response: $successResponse")
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

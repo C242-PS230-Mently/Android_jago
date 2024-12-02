@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import id.co.mentalhealth.databinding.FragmentHomeBinding
-import id.co.mentalhealth.ui.PsikologActivity
+import id.co.mentalhealth.ui.psikolog.PsikologActivity
 import id.co.mentalhealth.ui.adapter.ArticleAdapter
 import id.co.mentalhealth.ui.adapter.WorkShopAdapter
 import id.co.mentalhealth.ui.quest.QuestActivity
@@ -33,6 +33,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         viewModel.getWorkshop()
         viewModel.getArticle()
