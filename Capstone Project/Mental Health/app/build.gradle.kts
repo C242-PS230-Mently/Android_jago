@@ -77,6 +77,9 @@ dependencies {
     implementation("com.diogobernardino:williamchart:3.10.1")
 //    implementation ("com.github.SeptiawanAjiP:AndroidChartJS:1.0.5")
 
+//    Glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
     // Profile
     implementation(libs.circleimageview)
     implementation(libs.androidx.exifinterface)

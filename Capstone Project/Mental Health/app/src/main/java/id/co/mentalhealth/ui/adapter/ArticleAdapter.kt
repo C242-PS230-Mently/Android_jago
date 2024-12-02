@@ -12,18 +12,17 @@ import com.bumptech.glide.Glide
 import id.co.mentalhealth.data.network.response.DashboardItem
 import id.co.mentalhealth.databinding.ListDashboardBinding
 
-class WorkShopAdapter : ListAdapter<DashboardItem, WorkShopAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-
+class ArticleAdapter: ListAdapter<DashboardItem, ArticleAdapter.ListViewHolder>(ArticleAdapter.DIFF_CALLBACK) {
     class ListViewHolder(private val binding: ListDashboardBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(workShop: DashboardItem) {
-            binding.tvTitle.text = workShop.title
+        fun bind(dashboardItem: DashboardItem) {
+            binding.tvTitle.text = dashboardItem.title
             Glide.with(binding.ivPicture.context)
-                .load(workShop.image_url)
+                .load(dashboardItem.image_url)
                 .into(binding.ivPicture)
-            Log.d("ListEventsAdapter", "$workShop")
+            Log.d("ListEventsAdapter", "$dashboardItem")
             itemView.setOnClickListener {
-                val url = workShop.full_article_link
+                val url = dashboardItem.full_article_link
                 if (url != null) {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     itemView.context.startActivity(intent)

@@ -189,7 +189,7 @@
                 android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="LinearLayoutManager"
-                tools:listitem="@layout/list_workshop" />
+                tools:listitem="@layout/list_dashboard" />
 
             <TextView
                 android:id="@+id/tv_artikel"
@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layoutManager="LinearLayoutManager"
-                tools:listitem="@layout/list_workshop" />
+                tools:listitem="@layout/list_dashboard" />
 
         </LinearLayout>
         </androidx.cardview.widget.CardView>
