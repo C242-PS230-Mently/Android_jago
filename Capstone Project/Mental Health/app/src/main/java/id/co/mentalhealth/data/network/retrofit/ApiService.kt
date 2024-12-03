@@ -1,8 +1,10 @@
 package id.co.mentalhealth.data.network.retrofit
 
 import id.co.mentalhealth.data.network.response.ArticleResponse
+import id.co.mentalhealth.data.network.response.DoctorsResponse
 import id.co.mentalhealth.data.network.response.HistoryResponse
 import id.co.mentalhealth.data.network.response.LoginResponse
+import id.co.mentalhealth.data.network.response.PasswordResponse
 import id.co.mentalhealth.data.network.response.PhotoResponse
 import id.co.mentalhealth.data.network.response.PredictionResponse
 import id.co.mentalhealth.data.network.response.QuestionResponse
@@ -37,6 +39,20 @@ interface ApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ): RegisterResponse
+
+    @FormUrlEncoded
+    @POST("auth/forgot-password")
+    suspend fun forgotPassword(
+        @Field("email") email: String
+    ): PasswordResponse
+
+    @FormUrlEncoded
+    @POST("auth/reset-password")
+    suspend fun resetPassword(
+        @Field("otp") otp: String,
+        @Field("newPassword") newPassword: String
+    ): PasswordResponse
+
 //    Question
     @GET("/user/questions")
     suspend fun getQuestions(): QuestionResponse
@@ -68,4 +84,7 @@ interface ApiService {
 
     @GET("/user/dashboard/article")
     suspend fun getArticle(): ArticleResponse
+
+    @GET("/user/doctors")
+    suspend fun getDoctors(): DoctorsResponse
 }

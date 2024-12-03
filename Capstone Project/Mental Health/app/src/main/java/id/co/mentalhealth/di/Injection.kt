@@ -7,6 +7,7 @@ import id.co.mentalhealth.data.pref.dataStore
 import id.co.mentalhealth.ui.auth.AuthRepository
 import id.co.mentalhealth.ui.home.HomeRepository
 import id.co.mentalhealth.ui.profile.ProfileRepository
+import id.co.mentalhealth.ui.psikolog.PsikologRepository
 import id.co.mentalhealth.ui.quest.QuestionRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -22,6 +23,12 @@ object Injection {
         val pref = UserPreferences.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiService()
         return HomeRepository.getInstance(apiService, pref)
+    }
+
+    fun providePsikologdRepository(context: Context): PsikologRepository {
+        val pref = UserPreferences.getInstance(context.dataStore)
+        val apiService = ApiConfig.getApiService()
+        return PsikologRepository.getInstance(apiService, pref)
     }
 
     fun provideQuestRepository(context: Context): QuestionRepository {

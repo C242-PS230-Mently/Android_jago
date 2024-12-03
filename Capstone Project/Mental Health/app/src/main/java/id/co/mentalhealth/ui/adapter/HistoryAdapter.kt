@@ -17,7 +17,17 @@ class HistoryAdapter : ListAdapter<HistoryItem, HistoryAdapter.ListViewHolder>(D
     class ListViewHolder(private val binding: ItemListHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(history: HistoryItem) {
             binding.tvDate.text = history.createdAt
-            binding.tvDescription.text = history.userId
+
+            val predictions = history.predictions
+            val predictionsText = """
+            Level Bipolar: ${predictions.levelBipolar}
+            Level OCD: ${predictions.levelOCD}
+            Level Kecemasan: ${predictions.levelKecemasan}
+            Level Depresi: ${predictions.levelDepresi}
+            Level Skizofrenia: ${predictions.levelSkizofrenia}
+        """.trimIndent()
+            binding.tvDescription.text = predictionsText
+
             binding.tvTitle.text = history.totalConsult
             Log.d("ListEventsAdapter", "$history")
             itemView.setOnClickListener {

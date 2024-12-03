@@ -36,3 +36,30 @@ data class ArticleResponse(
     @field:SerializedName("data")
     val data: List<DashboardItem>
 )
+
+data class DoctorsResponse(
+    @field:SerializedName("message")
+    val message: String,
+
+    @field:SerializedName("doctors")
+    val doctor: List<DoctorsItem>
+)
+
+@Parcelize
+data class DoctorsItem(
+    @field:SerializedName("id")
+    val id: Int,
+
+    @field:SerializedName("name")
+    val name: String,
+
+    @field:SerializedName("specialization")
+    val specialization: String,
+
+    @field:SerializedName("image_url")
+    val image_url: String,
+
+    @field:SerializedName("location")
+    val location: String
+
+): Parcelable
