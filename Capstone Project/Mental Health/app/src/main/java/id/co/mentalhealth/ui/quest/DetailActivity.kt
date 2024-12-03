@@ -50,6 +50,8 @@ class DetailActivity : AppCompatActivity() {
                             "Bipolar" to getLevelValue(it.levelBipolar)
                         )
                         binding.apply {
+                            tvTitleDesc.text = predictions.namaSolusi
+                            tvDesc.text = predictions.solusi
                             barChartHorz.animation.duration = animationDurazion
                             barChartHorz.animate(updateBarSet)
                         }
@@ -75,17 +77,19 @@ class DetailActivity : AppCompatActivity() {
                 "Bipolar" to getLevelValue(it.levelBipolar)
             )
             binding.apply {
+                tvTitleDesc.text = prediction.namaSolusi
+                tvDesc.text = prediction.solusi
                 barChartHorz.animation.duration = animationDurazion
                 barChartHorz.animate(updateBarSet)
             }
         }
     }
 
-    private fun getLevelValue(level: String): Float {
+    private fun getLevelValue(level: Int): Float {
         return when (level) {
-            "Tinggi" -> 6f
-            "Sedang" -> 4f
-            "Rendah" -> 2f
+            3 -> 6f
+            2 -> 4f
+            1 -> 2f
             else -> 0f
         }
     }
