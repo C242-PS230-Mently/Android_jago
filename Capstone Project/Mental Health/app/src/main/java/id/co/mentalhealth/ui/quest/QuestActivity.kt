@@ -38,6 +38,12 @@ class QuestActivity : AppCompatActivity() {
 
         questViewModel.currentIndex.observe(this){ index ->
             binding.noquest.text = "${index + 1}/25"
+
+            if (index == 24 ) { // TOTAL_QUESTIONS = 25
+                binding.btnNext.text = "Kirim"
+            }else{
+                binding.btnNext.text = "Selanjutnya"
+            }
         }
 
 
@@ -49,7 +55,6 @@ class QuestActivity : AppCompatActivity() {
                     questViewModel.nextQuestion()
                     loadCurrentQuestion()
                 }else{
-                    binding.btnNext.text = "Kirim"
                     questViewModel.submitAnswersForPrediction()
                     Toast.makeText(this, "Kuis selesai! Mengirim jawaban...", Toast.LENGTH_SHORT).show()
                     logUserAnswers()

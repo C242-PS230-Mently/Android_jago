@@ -5,18 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import id.co.mentalhealth.data.pref.UserPreferences
 import id.co.mentalhealth.data.pref.dataStore
 import id.co.mentalhealth.databinding.FragmentProfileBinding
 import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.MainViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
-import id.co.mentalhealth.ui.auth.password.ResetPwActivity
-import kotlinx.coroutines.launch
+import id.co.mentalhealth.ui.profile.change.ChangePwActivity
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -49,7 +46,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.layoutPassword.setOnClickListener {
-            val intent = Intent(requireActivity(), ResetPwActivity::class.java)
+            val intent = Intent(requireActivity(), ChangePwActivity::class.java)
             startActivity(intent)
         }
 

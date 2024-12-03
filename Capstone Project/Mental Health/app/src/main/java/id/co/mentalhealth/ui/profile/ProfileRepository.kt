@@ -1,8 +1,10 @@
 package id.co.mentalhealth.ui.profile
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.google.gson.Gson
 import id.co.mentalhealth.data.network.ResultState
+import id.co.mentalhealth.data.network.response.ChangePwResponse
 import id.co.mentalhealth.data.network.response.PhotoResponse
 import id.co.mentalhealth.data.network.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
@@ -32,7 +34,16 @@ class ProfileRepository private constructor(
         }
     }
 
-
+    suspend fun changePassword(newPassword: String): Result<ChangePwResponse> {
+        return try {
+            val response = apiService.changePassword(newPassword)
+            Log.d("ProfileRepository", "Response: $response")
+            Result.success(response)
+        } catch (e: Exception) {
+            Log.e("ProfileRepository", "Error: ${e.message}", e)
+            Result.failure(e)
+        }
+    }
 
     companion object {
         @Volatile
