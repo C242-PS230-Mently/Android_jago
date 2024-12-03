@@ -30,8 +30,10 @@ class QuestActivity : AppCompatActivity() {
         ) { isGranted: Boolean ->
             if (isGranted) {
                 Log.d("Notifications", "Notifications permission granted")
+//                Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT).show()
             } else {
                 Log.d("Notifications", "Notifications permission rejected")
+//                Toast.makeText(this, "Notifications permission rejected", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -83,10 +85,10 @@ class QuestActivity : AppCompatActivity() {
 
                     questViewModel.predictionResult.observe(this) { result ->
                         result.onSuccess { predictions ->
+                            Log.d("QuestActivity", "Predictions: $predictions")
                             val predictionsText = predictions.username
                             val predictionsMessage = predictions.message
-                            val predictionsNumber = predictions.createdAt
-                                sendNotification(predictionsText, predictionsMessage, predictionsNumber)
+                                sendNotification(predictionsText, predictionsMessage)
                                 val intent = Intent(this, DetailActivity::class.java)
                                 intent.putExtra("predictions", predictions)
                                 startActivity(intent)
@@ -148,13 +150,12 @@ class QuestActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendNotification(title: String, message: String, number: String){
+    private fun sendNotification(title: String, message: String){
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
             .setSmallIcon(R.drawable.ic_notifications_black_24dp)
             .setContentText(message)
-            .setSubText(number)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         val notification = builder.build()
         notificationManager.notify(NOTIFICATION_ID, notification)
