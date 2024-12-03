@@ -159,7 +159,7 @@ class DetailProfileActivity : AppCompatActivity() {
                         is ResultState.Error -> {
                             AlertDialog.Builder(this).apply {
                                 setTitle("Hmm")
-                                setMessage("Foto gagal diupload dengan error ${response.error}. Mau coba lagi")
+                                setMessage("Foto gagal diupload dengan error ${response.error}. Mau coba lagi?")
                                 setPositiveButton("Coba lagi") { _, _ ->
                                     lifecycleScope.launch { uploadImage() }
                                 }

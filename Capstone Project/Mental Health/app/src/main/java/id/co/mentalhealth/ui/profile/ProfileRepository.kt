@@ -28,9 +28,11 @@ class ProfileRepository private constructor(
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, PhotoResponse::class.java)
-            emit(ResultState.Error(errorResponse.message.toString()))
+            emit(ResultState.Error(errorResponse.msg.toString()))
         }
     }
+
+
 
     companion object {
         @Volatile
