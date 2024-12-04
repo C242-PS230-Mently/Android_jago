@@ -26,7 +26,7 @@ data class HistoryItem(
 	val id: Int,
 
 	@field:SerializedName("predictions")
-	val predictions: HistoryPredictions,
+	val predictions: Predictions,
 
 	@field:SerializedName("total_consult")
 	val totalConsult: String

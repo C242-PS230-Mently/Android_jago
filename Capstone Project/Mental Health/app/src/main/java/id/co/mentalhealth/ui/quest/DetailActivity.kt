@@ -44,13 +44,13 @@ class DetailActivity : AppCompatActivity() {
                     Log.d("DetailActivity", "Loaded History Item: $predictions")
                     predictions?.let {
                         val updateBarSet = listOf(
-                            "Tinggi" to 10f,
-                            "Skizofrenia" to getLevelString(it.levelSkizofrenia),
-                            "OCD" to getLevelString(it.levelOCD),
-                            "Kecemasan" to getLevelString(it.levelKecemasan),
-                            "Depresi" to getLevelString(it.levelDepresi),
-                            "Bipolar" to getLevelString(it.levelBipolar),
-                            "Rendah" to 0f
+                            "TINGGI" to 10f,
+                            "Skizofrenia" to getLevelInt(it.levelSkizofrenia),
+                            "OCD" to getLevelInt(it.levelOCD),
+                            "Kecemasan" to getLevelInt(it.levelKecemasan),
+                            "Depresi" to getLevelInt(it.levelDepresi),
+                            "Bipolar" to getLevelInt(it.levelBipolar),
+                            "RENDAH" to 0f
                         )
                         Log.d("DetailPredic1", "Loaded History predictions Item: $updateBarSet")
                         binding.apply {
@@ -74,11 +74,13 @@ class DetailActivity : AppCompatActivity() {
         val prediction = predictions?.predictions
         prediction?.let {
             val updateBarSet = listOf(
+                "Tinggi" to 10f,
                 "Skizofrenia" to getLevelInt(it.levelSkizofrenia),
                 "OCD" to getLevelInt(it.levelOCD),
                 "Kecemasan" to getLevelInt(it.levelKecemasan),
                 "Depresi" to getLevelInt(it.levelDepresi),
-                "Bipolar" to getLevelInt(it.levelBipolar)
+                "Bipolar" to getLevelInt(it.levelBipolar),
+                "Rendah" to 0f
             )
             Log.d("DetailPredic2", "Loaded History predictions Item: $updateBarSet")
             binding.apply {
