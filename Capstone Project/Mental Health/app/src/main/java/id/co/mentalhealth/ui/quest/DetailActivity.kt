@@ -100,13 +100,4 @@ class DetailActivity : AppCompatActivity() {
             else -> 0f
         }
     }
-
-    private fun getLevelString(level: String): Float {
-        return when (level) {
-            "3" -> 10F
-            "2" -> 6F
-            "1" -> 3F
-            else -> 0f
-        }
-    }
 }
