@@ -9,15 +9,11 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
-
     private val _resetPassword = MutableLiveData<Result<ChangePwResponse>>()
     val resetPassword: LiveData<Result<ChangePwResponse>> = _resetPassword
 
-
-
+    suspend fun getProfile() = repository.getProfile()
     suspend fun uploadImage(file: File) = repository.uploadImage(file)
-
-
 
     fun changePassword(newPassword: String){
         viewModelScope.launch {

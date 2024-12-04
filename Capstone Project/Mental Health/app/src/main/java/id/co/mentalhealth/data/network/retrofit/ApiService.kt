@@ -8,6 +8,7 @@ import id.co.mentalhealth.data.network.response.LoginResponse
 import id.co.mentalhealth.data.network.response.PasswordResponse
 import id.co.mentalhealth.data.network.response.PhotoResponse
 import id.co.mentalhealth.data.network.response.PredictionResponse
+import id.co.mentalhealth.data.network.response.ProfileResponse
 import id.co.mentalhealth.data.network.response.QuestionResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
 import id.co.mentalhealth.data.network.response.WorkshopResponse
@@ -97,4 +98,8 @@ interface ApiService {
 
     @GET("/user/doctors")
     suspend fun getDoctors(): DoctorsResponse
+
+    @GET("/user/profile")
+    suspend fun getProfile(): ProfileResponse
+
 }

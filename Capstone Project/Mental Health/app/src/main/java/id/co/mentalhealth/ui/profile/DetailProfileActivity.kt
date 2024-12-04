@@ -59,6 +59,7 @@ class DetailProfileActivity : AppCompatActivity() {
         binding = ActivityDetailProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         showImage()
+        setupInfoUser()
 
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -77,6 +78,47 @@ class DetailProfileActivity : AppCompatActivity() {
         }
         binding.btnBack.setOnClickListener { finish() }
         binding.fabProfileImage.setOnClickListener { showBottomSheet() }
+    }
+
+    private fun setupInfoUser() {
+        lifecycleScope.launch {
+            profileViewModel.getProfile().observe(this@DetailProfileActivity) { response ->
+                if (response != null) {
+                    when (response) {
+                        is ResultState.Loading ->
+                            showLoading(true)
+
+                        is ResultState.Success -> {
+                            binding.edtNamalengkap.setText(response.data.data!!.fullName)
+                            binding.edtEmail.setText(response.data.data.email)
+                            binding.edtUmur.setText(response.data.data.age.toString())
+                            binding.edtJeniskelamin.setText(response.data.data.gender)
+                            showLoading(false)
+                        }
+
+                        is ResultState.Error -> {
+                            AlertDialog.Builder(this@DetailProfileActivity).apply {
+                                setTitle("Hmm")
+                                setMessage("Terjadi Kesalahan \"${response.error}\" data gagal ditampilkan.")
+                                setPositiveButton("OK", null)
+                                create()
+                                show()
+                            }
+                            showLoading(false)
+                        }
+                    }
+                } else {
+                    AlertDialog.Builder(this@DetailProfileActivity).apply {
+                        setTitle("Hmm")
+                        setMessage("Terjadi Kesalahan data gagal ditampilkan.")
+                        setPositiveButton("OK", null)
+                        create()
+                        show()
+                    }
+                    showLoading(false)
+                }
+            }
+        }
     }
 
     private fun showBottomSheet() {
@@ -170,7 +212,7 @@ class DetailProfileActivity : AppCompatActivity() {
                                 show()
                             }
                             showLoading(false)
-                            mainViewModel.getSession().observe(this) { user->
+                            mainViewModel.getSession().observe(this) { user ->
                                 user.photo = response.data.url
                             }
                         }

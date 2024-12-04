@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.data.network.response.ChangePwResponse
 import id.co.mentalhealth.data.network.response.PhotoResponse
+import id.co.mentalhealth.data.network.response.ProfileResponse
 import id.co.mentalhealth.data.network.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -16,6 +17,26 @@ import java.io.File
 class ProfileRepository private constructor(
     private val apiService: ApiService
 ) {
+
+    suspend fun getProfile() = liveData {
+        emit(ResultState.Loading)
+        try {
+            val successResponse = apiService.getProfile()
+            emit(ResultState.Success(successResponse))
+        } catch (e: Exception) {
+            when (e) {
+                is HttpException -> {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, ProfileResponse::class.java)
+                    emit(ResultState.Error(errorResponse.msg.toString()))
+                }
+                else -> {
+                    emit(ResultState.Error(e.message.toString()))
+                }
+            }
+        }
+    }
+
     suspend fun uploadImage(file: File) = liveData {
         emit(ResultState.Loading)
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
