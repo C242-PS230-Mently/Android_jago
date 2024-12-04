@@ -19,14 +19,14 @@ class HistoryAdapter : ListAdapter<HistoryItem, HistoryAdapter.ListViewHolder>(D
             binding.tvDate.text = history.createdAt
 
             val predictions = history.predictions
-            val predictionsText = """
-            Level Bipolar: ${predictions.levelBipolar}
-            Level OCD: ${predictions.levelOCD}
-            Level Kecemasan: ${predictions.levelKecemasan}
-            Level Depresi: ${predictions.levelDepresi}
-            Level Skizofrenia: ${predictions.levelSkizofrenia}
-        """.trimIndent()
-            binding.tvDescription.text = predictionsText
+//            val predictionsText = """
+//            Level Bipolar: ${predictions.levelBipolar}
+//            Level OCD: ${predictions.levelOCD}
+//            Level Kecemasan: ${predictions.levelKecemasan}
+//            Level Depresi: ${predictions.levelDepresi}
+//            Level Skizofrenia: ${predictions.levelSkizofrenia}
+//        """.trimIndent()
+            binding.tvDescription.text = predictions.namaSolusi
 
             binding.tvTitle.text = history.totalConsult
             Log.d("ListEventsAdapter", "$history")

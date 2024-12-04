@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import id.co.mentalhealth.databinding.FragmentHomeBinding
-import id.co.mentalhealth.ui.psikolog.PsikologActivity
 import id.co.mentalhealth.ui.adapter.ArticleAdapter
 import id.co.mentalhealth.ui.adapter.WorkShopAdapter
+import id.co.mentalhealth.ui.psikolog.PsikologActivity
 import id.co.mentalhealth.ui.quest.QuestActivity
 
 class HomeFragment : Fragment() {
@@ -72,7 +72,8 @@ class HomeFragment : Fragment() {
         }
 
         articleAdapter = ArticleAdapter()
-        binding.artikelRecycler.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding.artikelRecycler.layoutManager = GridLayoutManager(requireContext(), 2)
+
         binding.artikelRecycler.adapter = articleAdapter
 
 

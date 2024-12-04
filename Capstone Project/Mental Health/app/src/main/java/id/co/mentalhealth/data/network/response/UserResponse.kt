@@ -50,17 +50,24 @@ data class PredictionResponse(
 data class Predictions(
 
 	@field:SerializedName("Level Bipolar")
-	val levelBipolar: String,
+	val levelBipolar: Int,
 
 	@field:SerializedName("Level OCD")
-	val levelOCD: String,
+	val levelOCD: Int,
 
 	@field:SerializedName("Level Kecemasan")
-	val levelKecemasan: String,
+	val levelKecemasan: Int,
 
 	@field:SerializedName("Level Depresi")
-	val levelDepresi: String,
+	val levelDepresi: Int,
 
 	@field:SerializedName("Level Skizofrenia")
-	val levelSkizofrenia: String
+	val levelSkizofrenia: Int,
+
+	@field:SerializedName("Nama Solusi")
+	val namaSolusi: String,
+
+	@field:SerializedName("Solusi")
+	val solusi: String
+
 ): Parcelable

@@ -11,26 +11,35 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivPicture"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:cropToPadding="true"
             tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="workshop" />
+            android:contentDescription="workshop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="title"
+            android:padding="14dp"
             android:textAlignment="center"
-            android:fontFamily="@font/poppins_semibold"/>
-    </LinearLayout>
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintTop_toBottomOf="@id/ivPicture"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

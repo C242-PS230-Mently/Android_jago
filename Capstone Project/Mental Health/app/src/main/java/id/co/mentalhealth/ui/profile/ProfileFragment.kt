@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.co.mentalhealth.R
@@ -18,13 +16,12 @@ import id.co.mentalhealth.databinding.FragmentProfileBinding
 import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.MainViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
-import id.co.mentalhealth.ui.auth.password.ResetPwActivity
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
-import kotlinx.coroutines.launch
+import id.co.mentalhealth.ui.profile.change.ChangePwActivity
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
-    private val mainViewModel by viewModels<MainViewModel> {
+    private val viewModel by viewModels<MainViewModel> {
         AuthViewModelFactory.getInstance(requireContext())
     }
 
@@ -54,7 +51,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.layoutPassword.setOnClickListener {
-            val intent = Intent(requireActivity(), ResetPwActivity::class.java)
+            val intent = Intent(requireActivity(), ChangePwActivity::class.java)
             startActivity(intent)
         }
 
@@ -63,7 +60,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showImage() {
-        mainViewModel.getSession().observe(requireActivity()) { user ->
+        viewModel.getSession().observe(requireActivity()) { user ->
             if (user.photo != null) {
                 Glide.with(binding.root.context)
                     .load(user.photo)
@@ -78,7 +75,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logout() {
-        mainViewModel.logout()
+        viewModel.logout()
         val intent = Intent(requireActivity(), MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

@@ -43,3 +43,8 @@ data class PasswordResponse(
     @field:SerializedName("msg")
     val msg: String
 )
+
+data class ChangePwResponse(
+    @field:SerializedName("message")
+    val message: String
+)

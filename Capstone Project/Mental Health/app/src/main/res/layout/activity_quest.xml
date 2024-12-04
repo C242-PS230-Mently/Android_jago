@@ -5,8 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="24dp"
-    android:paddingEnd="24dp"
     android:paddingTop="24dp"
     android:paddingBottom="24dp"
     tools:context=".ui.quest.QuestActivity">
@@ -27,8 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/pink"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -43,31 +39,52 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp" />
+
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/noquest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="1/25"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/cd_listPsi"
-        app:layout_constraintStart_toStartOf="@+id/cd_listPsi"
-        app:layout_constraintTop_toBottomOf="@+id/cd_listPsi" />
-
-    <TextView
-        android:id="@+id/tv_description"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Apakah Anda sering merasa khawatir berlebihan terhadap situasi yang belum terjadi?"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/cd_listPsi"
-        tools:layout_editor_absoluteX="36dp" />
+        android:layout_height="match_parent"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
+
+        <TextView
+            android:id="@+id/tv_isi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginTop="100dp"
+            android:text="Silahkan Isi!"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/noquest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/poppins_semibold"
+            android:text="1/25"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_isi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Apakah Anda sering merasa khawatir berlebihan terhadap situasi yang belum terjadi?"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noquest" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -148,4 +165,5 @@
 
     </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

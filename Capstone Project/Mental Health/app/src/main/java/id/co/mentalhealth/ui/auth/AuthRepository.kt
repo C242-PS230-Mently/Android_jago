@@ -57,6 +57,8 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
         }
     }
 
+
+
     suspend fun saveSession(user: UserModel) {
         userPreferences.saveSession(user)
         Log.d("SessionModel", "Session saved: $user")

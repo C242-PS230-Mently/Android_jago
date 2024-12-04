@@ -1,6 +1,7 @@
 package id.co.mentalhealth.data.network.retrofit
 
 import id.co.mentalhealth.data.network.response.ArticleResponse
+import id.co.mentalhealth.data.network.response.ChangePwResponse
 import id.co.mentalhealth.data.network.response.DoctorsResponse
 import id.co.mentalhealth.data.network.response.HistoryResponse
 import id.co.mentalhealth.data.network.response.LoginResponse
@@ -17,6 +18,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 
 interface ApiService {
@@ -53,6 +55,8 @@ interface ApiService {
         @Field("newPassword") newPassword: String
     ): PasswordResponse
 
+
+
 //    Question
     @GET("/user/questions")
     suspend fun getQuestions(): QuestionResponse
@@ -76,6 +80,12 @@ interface ApiService {
     suspend fun uploadImage(
         @Part file: MultipartBody.Part,
     ): PhotoResponse
+
+    @FormUrlEncoded
+    @PUT("/user/change-pass")
+    suspend fun changePassword(
+        @Field("password") password: String
+    ): ChangePwResponse
 
 
 //    dashboard
