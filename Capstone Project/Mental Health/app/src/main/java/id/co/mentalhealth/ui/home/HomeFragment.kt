@@ -9,9 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.co.mentalhealth.R
 import id.co.mentalhealth.databinding.FragmentHomeBinding
+import id.co.mentalhealth.ui.MainActivity
+import id.co.mentalhealth.ui.MainViewModel
 import id.co.mentalhealth.ui.adapter.ArticleAdapter
 import id.co.mentalhealth.ui.adapter.WorkShopAdapter
+import id.co.mentalhealth.ui.auth.AuthViewModel
+import id.co.mentalhealth.ui.auth.AuthViewModelFactory
+import id.co.mentalhealth.ui.auth.login.LoginActivity
 import id.co.mentalhealth.ui.psikolog.PsikologActivity
 import id.co.mentalhealth.ui.quest.QuestActivity
 
@@ -23,8 +29,15 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel> {
         HomeViewModelFactory.getInstance(requireContext())
     }
+    private val mainViewModel by viewModels<MainViewModel> {
+        AuthViewModelFactory.getInstance(requireContext())
+    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
@@ -34,17 +47,26 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        mainViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            if (!user.isLogin) {
+                val intent = Intent(requireActivity(), MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+                requireActivity().finish()
+            }
+            binding.name.text = getString(R.string.greeting, user.name)
+        }
 
         viewModel.getWorkshop()
         viewModel.getArticle()
 
-        viewModel.workShop.observe(viewLifecycleOwner){ result ->
+        viewModel.workShop.observe(viewLifecycleOwner) { result ->
             result.onSuccess { workshopResponse ->
                 val workshopList = workshopResponse.data
                 if (!workshopList.isNullOrEmpty()) {
                     WorkShopAdapter.submitList(workshopList)
-                }else{
+                } else {
                     binding.tvWorkshop.text = "Tidak ada workshop"
                 }
             }
@@ -54,15 +76,16 @@ class HomeFragment : Fragment() {
         }
 
         WorkShopAdapter = WorkShopAdapter()
-        binding.workshopRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.workshopRecycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.workshopRecycler.adapter = WorkShopAdapter
 
-        viewModel.article.observe(viewLifecycleOwner){ result ->
+        viewModel.article.observe(viewLifecycleOwner) { result ->
             result.onSuccess { articleResponse ->
                 val articleList = articleResponse.data
                 if (!articleList.isNullOrEmpty()) {
                     articleAdapter.submitList(articleList)
-                }else{
+                } else {
                     binding.tvWorkshop.text = "Tidak ada workshop"
                 }
             }

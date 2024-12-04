@@ -13,5 +13,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty_image_warning">Pilih gambar dulu.</string>
+    <string name="greeting">Hi %1$s,</string>
 
 </resources>
