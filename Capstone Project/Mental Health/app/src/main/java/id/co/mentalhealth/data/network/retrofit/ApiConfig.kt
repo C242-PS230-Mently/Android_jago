@@ -1,5 +1,6 @@
 package id.co.mentalhealth.data.network.retrofit
 
+import android.util.Log
 import id.co.mentalhealth.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -23,6 +24,7 @@ object ApiConfig {
                     .build()
                 chain.proceed(requestHeaders)
         }
+        Log.e("token", accessToken.toString())
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(authInterceptor)

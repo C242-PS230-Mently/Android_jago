@@ -78,7 +78,8 @@ dependencies {
 //    implementation ("com.github.SeptiawanAjiP:AndroidChartJS:1.0.5")
 
 //    Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.glide)
+    implementation(libs.glide.transformations)
 
     // Profile
     implementation(libs.circleimageview)

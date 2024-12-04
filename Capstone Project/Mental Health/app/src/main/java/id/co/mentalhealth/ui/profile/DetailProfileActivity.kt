@@ -22,6 +22,7 @@ import id.co.mentalhealth.R
 import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.databinding.ActivityDetailProfileBinding
 import id.co.mentalhealth.ui.MainViewModel
+import com.bumptech.glide.Glide
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -30,6 +31,9 @@ class DetailProfileActivity : AppCompatActivity() {
 
     private val profileViewModel by viewModels<ProfileViewModel> {
         ProfileViewModelFactory.getInstance(this)
+    }
+    private val mainViewModel by viewModels<MainViewModel> {
+        AuthViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityDetailProfileBinding
 
@@ -71,8 +75,6 @@ class DetailProfileActivity : AppCompatActivity() {
                 requestPermissionLauncher.launch(REQUIRED_PERMISSION)
             }
         }
-
-
         binding.btnBack.setOnClickListener { finish() }
         binding.fabProfileImage.setOnClickListener { showBottomSheet() }
     }
@@ -126,6 +128,20 @@ class DetailProfileActivity : AppCompatActivity() {
     }
 
     private fun showImage() {
+        mainViewModel.getSession().observe(this) { user ->
+            if (currentImageUri != null) {
+                binding.profileImage.setImageURI(currentImageUri)
+            } else if (user.photo != null) {
+                Glide.with(binding.root.context)
+                    .load(user.photo)
+                    .placeholder(R.drawable.foto_profile)
+                    .error(R.drawable.ic_profile)
+                    .into(binding.profileImage)
+            } else {
+                binding.profileImage.setImageResource(R.drawable.foto_profile)
+            }
+        }
+
         if (currentImageUri != null) {
             binding.profileImage.setImageURI(currentImageUri)
         } else {
@@ -154,6 +170,9 @@ class DetailProfileActivity : AppCompatActivity() {
                                 show()
                             }
                             showLoading(false)
+                            mainViewModel.getSession().observe(this) { user->
+                                user.photo = response.data.url
+                            }
                         }
 
                         is ResultState.Error -> {

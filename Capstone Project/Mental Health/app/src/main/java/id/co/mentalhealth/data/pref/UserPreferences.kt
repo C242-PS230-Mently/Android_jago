@@ -18,6 +18,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     suspend fun saveSession(user: UserModel) {
         try {
             dataStore.edit { preferences ->
+                preferences[PHOTO_KEY] = user.photo.toString()
                 preferences[EMAIL_KEY] = user.email
                 preferences[ID_KEY] = user.userId
                 preferences[NAME_KEY] = user.name
@@ -34,6 +35,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     fun getSession(): Flow<UserModel> {
         return dataStore.data.map { preferences ->
             UserModel(
+                preferences[PHOTO_KEY] ?: "",
                 preferences[EMAIL_KEY] ?: "",
                 preferences[ID_KEY] ?: "",
                 preferences[NAME_KEY] ?: "",
@@ -58,6 +60,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         @Volatile
         private var INSTANCE: UserPreferences? = null
 
+        private val PHOTO_KEY = stringPreferencesKey("photo")
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val ID_KEY = stringPreferencesKey("id")
         private val NAME_KEY = stringPreferencesKey("name")

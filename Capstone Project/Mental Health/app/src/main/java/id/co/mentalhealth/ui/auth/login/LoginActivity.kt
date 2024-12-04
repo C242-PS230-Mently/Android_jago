@@ -2,6 +2,7 @@ package id.co.mentalhealth.ui.auth.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -79,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
                                 val name = response.data.user?.fullName.toString()
                                 val token = response.data.accessToken.toString()
                                 val id = response.data.user?.id.toString()
+                                val photo = response.data.user?.photo
                                 AlertDialog.Builder(this).apply {
                                     setTitle("Yeah!")
                                     setMessage("Anda berhasil login dengan email atau username $identifier")
@@ -92,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                                     create()
                                     show()
                                 }
-                                viewModel.saveSession(UserModel(id, identifier, name, token))
+                                viewModel.saveSession(UserModel(photo, identifier, id, name, token))
                                 showLoading(false)
                             }
 

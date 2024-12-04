@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import id.co.mentalhealth.di.Injection
+import id.co.mentalhealth.ui.MainViewModel
+import id.co.mentalhealth.ui.auth.AuthViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
 
 class ProfileViewModelFactory(private val repository: ProfileRepository) :
@@ -13,6 +15,9 @@ class ProfileViewModelFactory(private val repository: ProfileRepository) :
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
             }
 

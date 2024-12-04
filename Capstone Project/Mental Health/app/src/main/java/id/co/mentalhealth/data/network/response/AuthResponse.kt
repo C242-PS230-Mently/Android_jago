@@ -33,7 +33,10 @@ data class User(
     val email: String,
 
     @field:SerializedName("username")
-    val username: String
+    val username: String,
+
+    @field:SerializedName("photo")
+    val photo: String? = null,
 )
 
 data class PasswordResponse(
