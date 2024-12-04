@@ -12,6 +12,9 @@ class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() 
     private val _resetPassword = MutableLiveData<Result<ChangePwResponse>>()
     val resetPassword: LiveData<Result<ChangePwResponse>> = _resetPassword
 
+    suspend fun editProfile(fullName: String, username: String, email: String, gender: String, age: String) =
+        repository.editProfile(fullName, username, email, gender, age)
+
     suspend fun getProfile() = repository.getProfile()
     suspend fun uploadImage(file: File) = repository.uploadImage(file)
 

@@ -165,7 +165,6 @@ class RegistFragment2 : Fragment() {
                     }
             }
         }
-
     }
 
     private fun showLoading(isLoading: Boolean) {

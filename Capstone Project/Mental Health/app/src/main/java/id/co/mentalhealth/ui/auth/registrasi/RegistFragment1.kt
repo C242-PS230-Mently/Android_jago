@@ -104,6 +104,9 @@ class RegistFragment1 : Fragment() {
                 if (age.isEmpty()) {
                     binding.edtUmur.error = "Umur harus diisi"
                 }
+                if (gender.isEmpty()) {
+                    binding.ddJeniskelamin.error = "Jenis kelamin harus dipilih"
+                }
             }
 
             else -> {

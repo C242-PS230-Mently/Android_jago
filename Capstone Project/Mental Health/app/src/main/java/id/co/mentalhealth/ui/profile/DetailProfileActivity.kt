@@ -61,63 +61,160 @@ class DetailProfileActivity : AppCompatActivity() {
         showImage()
         setupInfoUser()
 
-        if (ContextCompat.checkSelfPermission(
-                this,
-                REQUIRED_PERMISSION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSION)) {
-                Toast.makeText(
-                    this,
-                    "Aplikasi membutuhkan akses kamera untuk mengambil foto",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
+        binding.btnBack.setOnClickListener { finish() }
+        binding.btnSimpan.setOnClickListener { updateProfile() }
+        binding.fabProfileImage.setOnClickListener {
+            if (!allPermissionsGranted()) {
                 requestPermissionLauncher.launch(REQUIRED_PERMISSION)
             }
+            showBottomSheet()
         }
-        binding.btnBack.setOnClickListener { finish() }
-        binding.fabProfileImage.setOnClickListener { showBottomSheet() }
+    }
+
+    private fun updateProfile() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Hey!")
+            setMessage("Yakin ingin menyimpan perubahan?")
+            setPositiveButton("Ya") { _, _ ->
+                lifecycleScope.launch { actionUpdateProfile() }
+            }
+            setNegativeButton("Batal") {_, _ ->
+                setupInfoUser()
+                binding.root.clearFocus()
+            }
+            create()
+            show()
+        }
+    }
+
+    private fun actionUpdateProfile() {
+        val fullName = binding.edtNamalengkap.text.toString().trim()
+        val username = binding.edtUsername.text.toString().trim()
+        val email = binding.edtEmail.text.toString().trim()
+        val age = binding.edtUmur.text.toString().trim()
+        val gender = binding.edtJeniskelamin.text.toString().trim()
+
+        when {
+            fullName.isEmpty() || username.isEmpty() || email.isEmpty() || age.isEmpty() || gender.isEmpty() -> {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Aduh!")
+                    setMessage("Isi semua kolom dengan lengkap")
+                    setPositiveButton("OK", null)
+                    create()
+                    show()
+                }
+                if (fullName.isEmpty()) {
+                    binding.edtNamalengkap.error = "Nama lengkap harus diisi"
+                }
+                if (fullName.length < 5) {
+                    binding.edtNamalengkap.error =
+                        "Nama lengkap minimal 5 karakter, saat ini hanya ${fullName.length} karakter"
+                }
+                if (username.isEmpty()) {
+                    binding.edtUsername.error = "Username tidak boleh kosong"
+                }
+                if (username.length < 5) {
+                    binding.edtUsername.error =
+                        "Username minimal 6 karakter, saat ini hanya ${username.length} karakter"
+                }
+                if (gender.isEmpty()) {
+                    binding.edtJeniskelamin.error = "Jenis kelamin harus diisi"
+                }
+                if (email.isEmpty()) {
+                    binding.edtEmail.error = "Email tidak boleh kosong"
+                }
+                if (age.isEmpty()) {
+                    binding.edtUmur.error = "Umur harus diisi"
+                }
+            }
+
+            else -> {
+                lifecycleScope.launch {
+                    profileViewModel.editProfile(fullName, username, email, gender, age)
+                        .observe(this@DetailProfileActivity) { response ->
+                            if (response != null) {
+                                when (response) {
+                                    is ResultState.Loading -> {
+                                        showLoading(true)
+                                    }
+
+                                    is ResultState.Success -> {
+                                        AlertDialog.Builder(this@DetailProfileActivity).apply {
+                                            setTitle("Yeah!")
+                                            setMessage("Profile berhasil diupdate nih.")
+                                            setPositiveButton("Lanjut") { dialog, _ ->
+                                                dialog.dismiss()
+                                                finish()
+                                            }
+                                            create()
+                                            show()
+                                        }
+                                        showLoading(false)
+                                    }
+
+                                    is ResultState.Error -> {
+                                        AlertDialog.Builder(this@DetailProfileActivity).apply {
+                                            setTitle("Hmm")
+                                            setMessage("Terjadi Kesalahan \"${response.error}\" data gagal diupdate.")
+                                            setPositiveButton("Coba lagi") { _, _ ->
+                                                lifecycleScope.launch { updateProfile() }
+                                            }
+                                            setNegativeButton("Batal", null)
+                                            create()
+                                            show()
+                                        }
+                                        showLoading(false)
+                                    }
+                                }
+                            }
+                        }
+
+                }
+            }
+        }
     }
 
     private fun setupInfoUser() {
         lifecycleScope.launch {
-            profileViewModel.getProfile().observe(this@DetailProfileActivity) { response ->
-                if (response != null) {
-                    when (response) {
-                        is ResultState.Loading ->
-                            showLoading(true)
+            profileViewModel.getProfile()
+                .observe(this@DetailProfileActivity) { response ->
+                    if (response != null) {
+                        when (response) {
+                            is ResultState.Loading ->
+                                showLoading(true)
 
-                        is ResultState.Success -> {
-                            binding.edtNamalengkap.setText(response.data.data!!.fullName)
-                            binding.edtEmail.setText(response.data.data.email)
-                            binding.edtUmur.setText(response.data.data.age.toString())
-                            binding.edtJeniskelamin.setText(response.data.data.gender)
-                            showLoading(false)
-                        }
-
-                        is ResultState.Error -> {
-                            AlertDialog.Builder(this@DetailProfileActivity).apply {
-                                setTitle("Hmm")
-                                setMessage("Terjadi Kesalahan \"${response.error}\" data gagal ditampilkan.")
-                                setPositiveButton("OK", null)
-                                create()
-                                show()
+                            is ResultState.Success -> {
+                                binding.edtNamalengkap.setText(response.data.data!!.fullName)
+                                binding.edtUsername.setText(response.data.data.username)
+                                binding.edtEmail.setText(response.data.data.email)
+                                binding.edtUmur.setText(response.data.data.age.toString())
+                                binding.edtJeniskelamin.setText(response.data.data.gender)
+                                showLoading(false)
                             }
-                            showLoading(false)
+
+                            is ResultState.Error -> {
+                                AlertDialog.Builder(this@DetailProfileActivity)
+                                    .apply {
+                                        setTitle("Hmm")
+                                        setMessage("Terjadi Kesalahan \"${response.error}\" data gagal ditampilkan.")
+                                        setPositiveButton("OK", null)
+                                        create()
+                                        show()
+                                    }
+                                showLoading(false)
+                            }
                         }
+                    } else {
+                        AlertDialog.Builder(this@DetailProfileActivity).apply {
+                            setTitle("Hmm")
+                            setMessage("Terjadi Kesalahan data gagal ditampilkan.")
+                            setPositiveButton("OK", null)
+                            create()
+                            show()
+                        }
+                        showLoading(false)
                     }
-                } else {
-                    AlertDialog.Builder(this@DetailProfileActivity).apply {
-                        setTitle("Hmm")
-                        setMessage("Terjadi Kesalahan data gagal ditampilkan.")
-                        setPositiveButton("OK", null)
-                        create()
-                        show()
-                    }
-                    showLoading(false)
                 }
-            }
         }
     }
 
@@ -126,8 +223,10 @@ class DetailProfileActivity : AppCompatActivity() {
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_profile)
         bottomSheetDialog.show()
 
-        val fabCamera = bottomSheetDialog.findViewById<FloatingActionButton>(R.id.fab_camera)
-        val fabGallery = bottomSheetDialog.findViewById<FloatingActionButton>(R.id.fab_gallery)
+        val fabCamera =
+            bottomSheetDialog.findViewById<FloatingActionButton>(R.id.fab_camera)
+        val fabGallery =
+            bottomSheetDialog.findViewById<FloatingActionButton>(R.id.fab_gallery)
         val btnUpload = bottomSheetDialog.findViewById<Button>(R.id.btn_upload)
 
         fabCamera?.setOnClickListener { startCamera() }
@@ -165,7 +264,11 @@ class DetailProfileActivity : AppCompatActivity() {
             currentImageUri = uri
             showImage()
         } else {
-            Toast.makeText(this, "Tidak ada gambar yang terpilih", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Tidak ada gambar yang terpilih",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -247,7 +350,8 @@ class DetailProfileActivity : AppCompatActivity() {
 
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showToast(message: String) {

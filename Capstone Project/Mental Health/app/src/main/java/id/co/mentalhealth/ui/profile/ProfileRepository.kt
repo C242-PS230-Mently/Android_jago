@@ -18,6 +18,27 @@ class ProfileRepository private constructor(
     private val apiService: ApiService
 ) {
 
+    suspend fun editProfile(fullName: String, username: String, email: String, gender: String, age: String) =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val successResponse = apiService.editProfile(fullName, username, email, gender, age)
+                emit(ResultState.Success(successResponse))
+            } catch (e: Exception) {
+                when (e) {
+                    is HttpException -> {
+                        val errorBody = e.response()?.errorBody()?.string()
+                        val errorResponse = Gson().fromJson(errorBody, ProfileResponse::class.java)
+                        emit(ResultState.Error(errorResponse.msg.toString()))
+                    }
+
+                    else -> {
+                        emit(ResultState.Error(e.message.toString()))
+                    }
+                }
+            }
+        }
+
     suspend fun getProfile() = liveData {
         emit(ResultState.Loading)
         try {
@@ -27,9 +48,11 @@ class ProfileRepository private constructor(
             when (e) {
                 is HttpException -> {
                     val errorBody = e.response()?.errorBody()?.string()
-                    val errorResponse = Gson().fromJson(errorBody, ProfileResponse::class.java)
+                    val errorResponse =
+                        Gson().fromJson(errorBody, ProfileResponse::class.java)
                     emit(ResultState.Error(errorResponse.msg.toString()))
                 }
+
                 else -> {
                     emit(ResultState.Error(e.message.toString()))
                 }

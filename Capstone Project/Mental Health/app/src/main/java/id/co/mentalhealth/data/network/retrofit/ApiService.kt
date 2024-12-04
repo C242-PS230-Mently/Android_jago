@@ -102,4 +102,14 @@ interface ApiService {
     @GET("/user/profile")
     suspend fun getProfile(): ProfileResponse
 
+    @FormUrlEncoded
+    @PUT("/user/edit-profile")
+    suspend fun editProfile(
+        @Field("full_name") fullname: String,
+        @Field("username") username: String,
+        @Field("email") email: String,
+        @Field("gender") gender: String,
+        @Field("age") age: String,
+        ): ProfileResponse
+
 }
