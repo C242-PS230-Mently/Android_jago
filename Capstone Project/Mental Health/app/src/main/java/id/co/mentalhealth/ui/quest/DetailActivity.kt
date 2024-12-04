@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import id.co.mentalhealth.data.network.response.PredictionResponse
 import id.co.mentalhealth.databinding.ActivityDetailBinding
 import id.co.mentalhealth.ui.quest.history.HistoryViewModel
 import id.co.mentalhealth.ui.quest.history.HistoryViewModelFactory
@@ -44,11 +45,11 @@ class DetailActivity : AppCompatActivity() {
                     predictions?.let {
                         val updateBarSet = listOf(
                             "Tinggi" to 10f,
-                            "Skizofrenia" to getLevelValue(it.levelSkizofrenia),
-                            "OCD" to getLevelValue(it.levelOCD),
-                            "Kecemasan" to getLevelValue(it.levelKecemasan),
-                            "Depresi" to getLevelValue(it.levelDepresi),
-                            "Bipolar" to getLevelValue(it.levelBipolar),
+                            "Skizofrenia" to getLevelString(it.levelSkizofrenia),
+                            "OCD" to getLevelString(it.levelOCD),
+                            "Kecemasan" to getLevelString(it.levelKecemasan),
+                            "Depresi" to getLevelString(it.levelDepresi),
+                            "Bipolar" to getLevelString(it.levelBipolar),
                             "Rendah" to 0f
                         )
                         Log.d("DetailPredic1", "Loaded History predictions Item: $updateBarSet")
@@ -67,33 +68,42 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-//        val predictions: PredictionResponse? = intent.getParcelableExtra<PredictionResponse>("predictions")
-//        Log.d("predictions", predictions.toString())
-//        binding.tvDate.text = predictions?.createdAt
-//        val prediction = predictions?.predictions
-//        prediction?.let {
-//            val updateBarSet = listOf(
-//                "Skizofrenia" to getLevelValue(it.levelSkizofrenia),
-//                "OCD" to getLevelValue(it.levelOCD),
-//                "Kecemasan" to getLevelValue(it.levelKecemasan),
-//                "Depresi" to getLevelValue(it.levelDepresi),
-//                "Bipolar" to getLevelValue(it.levelBipolar)
-//            )
-//            Log.d("DetailPredic2", "Loaded History predictions Item: $updateBarSet")
-//            binding.apply {
-//                tvTitleDesc.text = prediction.namaSolusi
-//                tvDesc.text = prediction.solusi
-//                barChartHorz.animation.duration = animationDurazion
-//                barChartHorz.animate(updateBarSet)
-//            }
-//        }
+        val predictions: PredictionResponse? = intent.getParcelableExtra<PredictionResponse>("predictions")
+        Log.d("predictions", predictions.toString())
+        binding.tvDate.text = predictions?.createdAt
+        val prediction = predictions?.predictions
+        prediction?.let {
+            val updateBarSet = listOf(
+                "Skizofrenia" to getLevelInt(it.levelSkizofrenia),
+                "OCD" to getLevelInt(it.levelOCD),
+                "Kecemasan" to getLevelInt(it.levelKecemasan),
+                "Depresi" to getLevelInt(it.levelDepresi),
+                "Bipolar" to getLevelInt(it.levelBipolar)
+            )
+            Log.d("DetailPredic2", "Loaded History predictions Item: $updateBarSet")
+            binding.apply {
+                tvTitleDesc.text = prediction.namaSolusi
+                tvDesc.text = prediction.solusi
+                barChartHorz.animation.duration = animationDurazion
+                barChartHorz.animate(updateBarSet)
+            }
+        }
     }
 
-    private fun getLevelValue(level: Int): Float {
+    private fun getLevelInt(level: Int): Float {
         return when (level) {
             3 -> 10F
             2 -> 6F
             1 -> 3F
+            else -> 0f
+        }
+    }
+
+    private fun getLevelString(level: String): Float {
+        return when (level) {
+            "3" -> 10F
+            "2" -> 6F
+            "1" -> 3F
             else -> 0f
         }
     }
