@@ -26,9 +26,35 @@ data class HistoryItem(
 	val id: Int,
 
 	@field:SerializedName("predictions")
-	val predictions: Predictions,
+	val predictions: HistoryPredictions,
 
 	@field:SerializedName("total_consult")
 	val totalConsult: String
+
+): Parcelable
+
+@Parcelize
+data class HistoryPredictions(
+
+	@field:SerializedName("Level Bipolar")
+	val levelBipolar: String,
+
+	@field:SerializedName("Level OCD")
+	val levelOCD: String,
+
+	@field:SerializedName("Level Kecemasan")
+	val levelKecemasan: String,
+
+	@field:SerializedName("Level Depresi")
+	val levelDepresi: String,
+
+	@field:SerializedName("Level Skizofrenia")
+	val levelSkizofrenia: String,
+
+	@field:SerializedName("Nama Solusi")
+	val namaSolusi: String,
+
+	@field:SerializedName("Solusi")
+	val solusi: String
 
 ): Parcelable
