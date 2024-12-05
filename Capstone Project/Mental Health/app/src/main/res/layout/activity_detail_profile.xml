@@ -163,15 +163,14 @@
                 android:layout_marginTop="24dp"
                 android:hint="Jenis Kelamin">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_jeniskelamin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold"
                     android:inputType="none"
                     android:padding="16dp"
-                    android:textSize="14sp"
-                    app:simpleItems="@array/simple_items" />
+                    android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

@@ -31,15 +31,15 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:alpha="0"
-        tools:alpha="100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="0"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:alpha="100">
 
         <TextView
             android:id="@+id/txt_Masuk"
@@ -65,104 +65,103 @@
 
     <TextView
         android:id="@+id/txt_daftarakun"
-        android:alpha="0"
-        tools:alpha="100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_bold"
         android:text="Daftar Akun Baru"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomor" />
+        app:layout_constraintTop_toBottomOf="@+id/nomor"
+        tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_namalengkap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="Nama Lengkap"
         android:alpha="0"
-        tools:alpha="100"
+        android:hint="Nama Lengkap"
         app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="@+id/txt_daftarakun"
-        app:layout_constraintTop_toBottomOf="@+id/txt_daftarakun">
+        app:layout_constraintTop_toBottomOf="@+id/txt_daftarakun"
+        tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_namalengkap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:padding="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="16dp"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_email"
-        android:alpha="0"
-        tools:alpha="100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        app:endIconMode="clear_text"
+        android:alpha="0"
         android:hint="Email"
+        app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="@+id/txt_namalengkap"
-        app:layout_constraintTop_toBottomOf="@+id/txt_namalengkap">
+        app:layout_constraintTop_toBottomOf="@+id/txt_namalengkap"
+        tools:alpha="100">
 
         <id.co.mentalhealth.ui.customview.MyEmailEditText
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:padding="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_umur"
-        android:alpha="0"
-        tools:alpha="100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        app:endIconMode="clear_text"
+        android:alpha="0"
         android:hint="Umur"
+        app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="@+id/txt_email"
-        app:layout_constraintTop_toBottomOf="@+id/txt_email">
+        app:layout_constraintTop_toBottomOf="@+id/txt_email"
+        tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_umur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:padding="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="16dp"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_jeniskelamin"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Jenis Kelamin"
-        android:alpha="0"
-        tools:alpha="100"
         android:layout_marginTop="24dp"
+        android:alpha="0"
+        android:hint="Jenis Kelamin"
         app:layout_constraintTop_toBottomOf="@+id/txt_umur"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        tools:alpha="100">
 
-        <AutoCompleteTextView
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/dd_jeniskelamin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:textSize="14sp"
-            android:padding="16dp"
             android:fontFamily="@font/poppins_semibold"
-            app:simpleItems="@array/simple_items" />
+            android:inputType="none"
+            android:padding="16dp"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -170,16 +169,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Lanjut"
         android:alpha="0"
-        tools:alpha="100"
+        android:fontFamily="@font/poppins_bold"
+        android:padding="14dp"
+        android:text="Lanjut"
         android:textSize="16sp"
         app:backgroundTint="@color/blue"
-        android:padding="14dp"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:alpha="100" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

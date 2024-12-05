@@ -10,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.net.Uri
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -58,6 +60,11 @@ class DetailProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val genderOptions = resources.getStringArray(R.array.simple_items)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, genderOptions)
+        binding.edtJeniskelamin.setAdapter(adapter)
+
         showImage()
         setupInfoUser()
 
@@ -188,7 +195,7 @@ class DetailProfileActivity : AppCompatActivity() {
                                 binding.edtUsername.setText(response.data.data.username)
                                 binding.edtEmail.setText(response.data.data.email)
                                 binding.edtUmur.setText(response.data.data.age.toString())
-                                binding.edtJeniskelamin.setText(response.data.data.gender)
+                                binding.edtJeniskelamin.setText(response.data.data.gender, false)
                                 showLoading(false)
                             }
 

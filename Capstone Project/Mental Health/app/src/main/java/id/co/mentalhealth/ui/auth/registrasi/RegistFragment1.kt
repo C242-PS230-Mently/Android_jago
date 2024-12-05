@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -74,7 +75,17 @@ class RegistFragment1 : Fragment() {
             val intent = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        val genderOptions = resources.getStringArray(R.array.simple_items)
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            genderOptions
+        )
+        binding.ddJeniskelamin.setAdapter(adapter)
     }
 
     private fun next() {
@@ -94,9 +105,9 @@ class RegistFragment1 : Fragment() {
                 }
                 if (fullName.isEmpty()) {
                     binding.edtNamalengkap.error = "Nama lengkap harus diisi"
-                }
-                if (fullName.length < 5) {
-                    binding.edtNamalengkap.error = "Nama lengkap minimal 5 karakter, saat ini hanya ${fullName.length} karakter"
+                } else if (fullName.length < 5) {
+                    binding.edtNamalengkap.error =
+                        "Nama lengkap minimal 5 karakter, saat ini hanya ${fullName.length} karakter"
                 }
                 if (email.isEmpty()) {
                     binding.edtEmail.error = "Email tidak boleh kosong"

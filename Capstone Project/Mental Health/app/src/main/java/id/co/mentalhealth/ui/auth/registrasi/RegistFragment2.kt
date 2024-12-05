@@ -66,12 +66,6 @@ class RegistFragment2 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-// hapus jika sudah baik
-//        val fullName = arguments?.getString("fullName") ?: ""
-//        val email = arguments?.getString("email") ?: ""
-//        val age = arguments?.getString("age") ?: ""
-//        val gender = arguments?.getString("gender") ?: ""
-
         binding.btnBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -84,7 +78,7 @@ class RegistFragment2 : Fragment() {
         val fullName = arguments?.getString("fullName") ?: ""
         val email = arguments?.getString("email") ?: ""
         val age = arguments?.getString("age") ?: ""
-        val gender = arguments?.getString("gender") ?: ""
+        val gender = arguments?.getString("gender", "") ?: ""
         val username = binding.edtNamapengguna.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
         val konfirmasiPassword = binding.edtKonfPassword.text.toString().trim()
