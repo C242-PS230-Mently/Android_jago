@@ -27,6 +27,9 @@ data class QuestionsItem(
 @Parcelize
 data class PredictionResponse(
 
+	@field:SerializedName("id")
+	val id: Int,
+
 	@field:SerializedName("user_id")
 	val userId: String,
 

@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.databinding.ActivityChangePwBinding
 import id.co.mentalhealth.ui.MainActivity
-import id.co.mentalhealth.ui.profile.ProfileFragment
 import id.co.mentalhealth.ui.profile.ProfileViewModel
 import id.co.mentalhealth.ui.profile.ProfileViewModelFactory
 
@@ -42,6 +41,10 @@ class ChangePwActivity : AppCompatActivity() {
             } else {
                 viewModel.changePassword(newPassword.toString().trim())
             }
+        }
+
+        binding.btnBack.setOnClickListener {
+            finish()
         }
     }
 }

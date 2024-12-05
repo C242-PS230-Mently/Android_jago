@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="85dp"
-    android:paddingStart="24dp"
+    android:paddingStart="20dp"
     android:paddingTop="24dp"
-    android:paddingEnd="24dp"
+    android:paddingEnd="20dp"
     android:scrollbars="none"
     tools:context=".ui.home.HomeFragment">
 
@@ -90,9 +90,9 @@
 
                     <ImageView
                         android:id="@+id/ivtest"
-                        android:layout_width="match_parent"
+                        android:layout_width="150dp"
                         android:layout_height="match_parent"
-                        android:scaleType="fitEnd"
+                        android:layout_gravity="end"
                         android:src="@drawable/bg_test" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -138,9 +138,9 @@
 
                     <ImageView
                         android:id="@+id/ivpsikolog"
-                        android:layout_width="match_parent"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:scaleType="fitEnd"
+                        android:layout_gravity="end"
                         android:src="@drawable/bg_psi" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -178,8 +178,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:text="Workshop Terkini"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_semibold"
                     app:layout_constraintEnd_toEndOf="@id/card_layout_psikolog"
                     app:layout_constraintStart_toStartOf="@id/card_layout_psikolog"
                     app:layout_constraintTop_toBottomOf="@id/card_layout_psikolog" />
@@ -192,16 +192,16 @@
                     app:layoutManager="LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="@id/card_layout_psikolog"
                     app:layout_constraintTop_toBottomOf="@id/tv_workshop"
-                    tools:listitem="@layout/list_dashboard" />
+                    tools:listitem="@layout/list_workshop" />
 
                 <TextView
                     android:id="@+id/tv_artikel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="Artikel Populer"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="Artikel Kesehatan Mental"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_semibold"
                     app:layout_constraintTop_toBottomOf="@id/workshop_recycler" />
 
                 <androidx.recyclerview.widget.RecyclerView

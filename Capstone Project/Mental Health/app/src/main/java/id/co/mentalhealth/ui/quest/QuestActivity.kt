@@ -1,6 +1,7 @@
 package id.co.mentalhealth.ui.quest
 
 import android.Manifest
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
@@ -30,10 +31,8 @@ class QuestActivity : AppCompatActivity() {
         ) { isGranted: Boolean ->
             if (isGranted) {
                 Log.d("Notifications", "Notifications permission granted")
-//                Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT).show()
             } else {
                 Log.d("Notifications", "Notifications permission rejected")
-//                Toast.makeText(this, "Notifications permission rejected", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -80,17 +79,17 @@ class QuestActivity : AppCompatActivity() {
                     loadCurrentQuestion()
                 }else{
                     questViewModel.submitAnswersForPrediction()
-                    Toast.makeText(this, "Kuis selesai! Mengirim jawaban...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Mengirim jawaban...", Toast.LENGTH_SHORT).show()
                     logUserAnswers()
 
                     questViewModel.predictionResult.observe(this) { result ->
                         result.onSuccess { predictions ->
                             Log.d("QuestActivity", "Predictions: $predictions")
-                            val predictionsText = predictions.username
-                            val predictionsMessage = predictions.message
+                                val predictionsText = predictions.username
+                                val predictionsMessage = predictions.message
                                 sendNotification(predictionsText, predictionsMessage)
                                 val intent = Intent(this, DetailActivity::class.java)
-                                intent.putExtra("predictions", predictions)
+                                intent.putExtra(DetailActivity.EXTRA_HISTORY_ID, predictions.id)
                                 startActivity(intent)
                                 finish()
                         }
@@ -157,6 +156,16 @@ class QuestActivity : AppCompatActivity() {
             .setSmallIcon(R.drawable.ic_notifications_black_24dp)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val channel = NotificationChannel(
+                CHANNEL_ID,
+                CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            builder.setChannelId(CHANNEL_ID)
+            notificationManager.createNotificationChannel(channel)
+        }
         val notification = builder.build()
         notificationManager.notify(NOTIFICATION_ID, notification)
     }
@@ -164,6 +173,7 @@ class QuestActivity : AppCompatActivity() {
     companion object {
         private const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "channel_01"
+        private const val CHANNEL_NAME = "Mently"
     }
 
 }

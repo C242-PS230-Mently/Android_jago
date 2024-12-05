@@ -10,6 +10,16 @@
     android:paddingTop="24dp"
     tools:context=".ui.auth.password.ResetPwActivity">
 
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Back button"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@+id/title_ubahpw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/title_ubahpw" />
+
 
     <TextView
         android:id="@+id/title_ubahpw"

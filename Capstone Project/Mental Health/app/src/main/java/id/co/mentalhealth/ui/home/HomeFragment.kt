@@ -15,9 +15,7 @@ import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.MainViewModel
 import id.co.mentalhealth.ui.adapter.ArticleAdapter
 import id.co.mentalhealth.ui.adapter.WorkShopAdapter
-import id.co.mentalhealth.ui.auth.AuthViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
-import id.co.mentalhealth.ui.auth.login.LoginActivity
 import id.co.mentalhealth.ui.psikolog.PsikologActivity
 import id.co.mentalhealth.ui.quest.QuestActivity
 
@@ -86,11 +84,11 @@ class HomeFragment : Fragment() {
                 if (!articleList.isNullOrEmpty()) {
                     articleAdapter.submitList(articleList)
                 } else {
-                    binding.tvWorkshop.text = "Tidak ada workshop"
+                    binding.tvArtikel.text = "Tidak ada artikle"
                 }
             }
             result.onFailure {
-                binding.tvWorkshop.text = "Gagal mengambil workshop."
+                binding.tvArtikel.text = "Gagal mengambil Artikle."
             }
         }
 

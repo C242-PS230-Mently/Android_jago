@@ -52,5 +52,9 @@ class ResetPwActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
     }
 }

@@ -16,11 +16,11 @@ import id.co.mentalhealth.databinding.FragmentProfileBinding
 import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.MainViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import id.co.mentalhealth.ui.profile.change.ChangePwActivity
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? = null
+    private lateinit var binding: FragmentProfileBinding
     private val viewModel by viewModels<MainViewModel> {
         AuthViewModelFactory.getInstance(requireContext())
     }
@@ -29,14 +29,13 @@ class ProfileFragment : Fragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(layoutInflater)
+        binding = FragmentProfileBinding.inflate(layoutInflater)
         userPreferences = UserPreferences.getInstance(requireContext().dataStore)
         return binding.root
     }
@@ -93,8 +92,4 @@ class ProfileFragment : Fragment() {
         requireActivity().finish() // Tutup semua activity sebelumnya agar tidak bisa kembali
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

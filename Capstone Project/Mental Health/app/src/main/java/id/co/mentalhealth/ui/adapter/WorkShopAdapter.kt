@@ -10,18 +10,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.co.mentalhealth.data.network.response.DashboardItem
-import id.co.mentalhealth.databinding.ListDashboardBinding
+import id.co.mentalhealth.databinding.ListWorkshopBinding
 
 class WorkShopAdapter : ListAdapter<DashboardItem, WorkShopAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
 
-    class ListViewHolder(private val binding: ListDashboardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ListViewHolder(private val binding: ListWorkshopBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(workShop: DashboardItem) {
-            binding.tvTitle.text = workShop.title
             Glide.with(binding.ivPicture.context)
                 .load(workShop.image_url)
                 .into(binding.ivPicture)
-            Log.d("ListEventsAdapter", "$workShop")
+            Log.d("ListItemAdapter", "$workShop")
             itemView.setOnClickListener {
                 val url = workShop.full_article_link
                 if (url != null) {
@@ -33,7 +32,7 @@ class WorkShopAdapter : ListAdapter<DashboardItem, WorkShopAdapter.ListViewHolde
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = ListDashboardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ListWorkshopBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
