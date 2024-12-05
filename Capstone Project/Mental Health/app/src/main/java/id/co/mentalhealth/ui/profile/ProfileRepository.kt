@@ -71,10 +71,17 @@ class ProfileRepository private constructor(
         try {
             val successResponse = apiService.uploadImage(multipartBody)
             emit(ResultState.Success(successResponse))
-        } catch (e: HttpException) {
-            val errorBody = e.response()?.errorBody()?.string()
-            val errorResponse = Gson().fromJson(errorBody, PhotoResponse::class.java)
-            emit(ResultState.Error(errorResponse.msg.toString()))
+        } catch (e: Exception) {
+            when (e) {
+                is HttpException -> {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, PhotoResponse::class.java)
+                    emit(ResultState.Error(errorResponse.msg.toString()))
+                }
+                else -> {
+                    emit(ResultState.Error(e.message.toString()))
+                }
+            }
         }
     }
 

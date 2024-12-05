@@ -85,7 +85,7 @@ class DetailProfileActivity : AppCompatActivity() {
             setPositiveButton("Ya") { _, _ ->
                 lifecycleScope.launch { actionUpdateProfile() }
             }
-            setNegativeButton("Batal") {_, _ ->
+            setNegativeButton("Batal") { _, _ ->
                 setupInfoUser()
                 binding.root.clearFocus()
             }
@@ -238,7 +238,12 @@ class DetailProfileActivity : AppCompatActivity() {
 
         fabCamera?.setOnClickListener { startCamera() }
         fabGallery?.setOnClickListener { startGallery() }
-        btnUpload?.setOnClickListener { lifecycleScope.launch { uploadImage() } }
+        btnUpload?.setOnClickListener {
+            lifecycleScope.launch {
+                uploadImage()
+                bottomSheetDialog.dismiss()
+            }
+        }
     }
 
     private fun startCamera() {

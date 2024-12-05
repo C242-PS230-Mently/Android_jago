@@ -20,23 +20,19 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import id.co.mentalhealth.ui.profile.change.ChangePwActivity
 
 class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? = null
+    private lateinit var binding: FragmentProfileBinding
     private val viewModel by viewModels<MainViewModel> {
         AuthViewModelFactory.getInstance(requireContext())
     }
 
     private lateinit var userPreferences: UserPreferences
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(layoutInflater)
+        binding = FragmentProfileBinding.inflate(layoutInflater)
         userPreferences = UserPreferences.getInstance(requireContext().dataStore)
         return binding.root
     }
@@ -90,11 +86,6 @@ class ProfileFragment : Fragment() {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
-        requireActivity().finish() // Tutup semua activity sebelumnya agar tidak bisa kembali
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        requireActivity().finish()
     }
 }
