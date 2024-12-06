@@ -14,8 +14,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -25,6 +23,7 @@ import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.databinding.ActivityDetailProfileBinding
 import id.co.mentalhealth.ui.MainViewModel
 import com.bumptech.glide.Glide
+import id.co.mentalhealth.data.pref.UserModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -150,6 +149,7 @@ class DetailProfileActivity : AppCompatActivity() {
                                             setTitle("Yeah!")
                                             setMessage("Profile berhasil diupdate nih.")
                                             setPositiveButton("Lanjut") { dialog, _ ->
+                                                mainViewModel.updateUserName(fullName)
                                                 dialog.dismiss()
                                                 finish()
                                             }
@@ -175,7 +175,6 @@ class DetailProfileActivity : AppCompatActivity() {
                                 }
                             }
                         }
-
                 }
             }
         }

@@ -19,6 +19,10 @@ class MainViewModel(private val repository: AuthRepository) : ViewModel() {
         }
     }
 
-
+    fun updateUserName(newName: String) {
+        viewModelScope.launch {
+            repository.updateUserName(newName)
+        }
+    }
 
 }

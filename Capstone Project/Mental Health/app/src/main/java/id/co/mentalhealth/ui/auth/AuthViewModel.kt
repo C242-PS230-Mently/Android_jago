@@ -26,7 +26,6 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         viewModelScope.launch {
             authRepository.saveSession(user)
         }
-
     }
 
     fun forgot(email: String) {

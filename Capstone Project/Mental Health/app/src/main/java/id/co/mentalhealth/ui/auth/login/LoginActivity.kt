@@ -78,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
                             is ResultState.Success -> {
                                 val name = response.data.user?.fullName.toString()
+                                val email = response.data.user?.email.toString()
                                 val token = response.data.accessToken.toString()
                                 val id = response.data.user?.id.toString()
                                 val photo = response.data.user?.photo
@@ -94,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                                     create()
                                     show()
                                 }
-                                viewModel.saveSession(UserModel(photo, identifier, id, name, token))
+                                viewModel.saveSession(UserModel(photo, email, id, name, token))
                                 showLoading(false)
                             }
 

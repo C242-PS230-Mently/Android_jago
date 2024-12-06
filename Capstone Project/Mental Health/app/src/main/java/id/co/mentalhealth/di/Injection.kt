@@ -14,10 +14,12 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
 object Injection {
+    @Suppress("UNCHECKED_CAST")
     fun <T> provideRepository(context: Context, repositoryClass: Class<T>): T {
         val pref = UserPreferences.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiService()
 
+        @Suppress("IMPLICIT_CAST_TO_ANY")
         return when(repositoryClass) {
             AuthRepository::class.java -> AuthRepository.getInstance(apiService, pref)
             ProfileRepository::class.java -> ProfileRepository.getInstance(apiService)

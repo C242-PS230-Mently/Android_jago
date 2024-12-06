@@ -31,6 +31,17 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    suspend fun updateUserName(newName: String) {
+        try {
+            dataStore.edit { preferences ->
+                preferences[NAME_KEY] = newName
+            }
+            Log.d("UserPreferences", "Nama berhasil diperbarui.")
+        } catch (e: Exception) {
+            Log.e("UserPreferences", "Gagal memperbarui nama: ${e.message}")
+        }
+    }
+
     // Retrieve the token from DataStore
     fun getSession(): Flow<UserModel> {
         return dataStore.data.map { preferences ->

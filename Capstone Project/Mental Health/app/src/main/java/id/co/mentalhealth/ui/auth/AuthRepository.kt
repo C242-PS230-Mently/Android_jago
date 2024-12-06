@@ -59,11 +59,14 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
         }
     }
 
-
-
     suspend fun saveSession(user: UserModel) {
         userPreferences.saveSession(user)
         Log.d("SessionModel", "Session saved: $user")
+    }
+
+    suspend fun updateUserName(newName: String) {
+        userPreferences.updateUserName(newName)
+        Log.d("SessionModel", "Name updated: $newName")
     }
 
     fun getSession(): Flow<UserModel> {
