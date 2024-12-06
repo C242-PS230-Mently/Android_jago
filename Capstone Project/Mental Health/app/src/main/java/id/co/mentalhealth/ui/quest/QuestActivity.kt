@@ -107,6 +107,10 @@ class QuestActivity : AppCompatActivity() {
             questViewModel.previousQuestion()
             loadCurrentQuestion()
         }
+
+        binding.icBack.setOnClickListener {
+            finish()
+        }
     }
 
 

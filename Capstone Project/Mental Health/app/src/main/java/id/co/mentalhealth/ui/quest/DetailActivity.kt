@@ -28,30 +28,6 @@ class DetailActivity : AppCompatActivity() {
 
         viewModel.getUserAllHistory()
 
-//        predic to Detail
-//        val predictions: PredictionResponse? = intent.getParcelableExtra<PredictionResponse>("predictions")
-//        Log.d("predictions", predictions.toString())
-//        binding.tvDate.text = predictions?.createdAt
-//        val prediction = predictions?.predictions
-//        prediction?.let {
-//            val updateBarSet = listOf(
-//                "Tinggi" to 10f,
-//                "Skizofrenia" to getLevelInt(it.levelSkizofrenia),
-//                "OCD" to getLevelInt(it.levelOCD),
-//                "Kecemasan" to getLevelInt(it.levelKecemasan),
-//                "Depresi" to getLevelInt(it.levelDepresi),
-//                "Bipolar" to getLevelInt(it.levelBipolar),
-//                "Rendah" to 0f
-//            )
-//            Log.d("DetailPredic", "Loaded History predictions Item: $updateBarSet")
-//            binding.apply {
-//                tvTitleDesc.text = prediction.namaSolusi
-//                tvDesc.text = prediction.solusi
-//                barChartHorz.animation.duration = animationDurazion
-//                barChartHorz.animate(updateBarSet)
-//            }
-//        }
-
         viewModel.history.observe(this) { result ->
             if (result.isSuccess) {
                 val historyList = result.getOrNull()?.data
@@ -91,6 +67,9 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
+        binding.icBack.setOnClickListener {
+            finish()
+        }
 
     }
 

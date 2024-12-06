@@ -44,5 +44,8 @@ class PsikologActivity : AppCompatActivity() {
         binding.listDoctorRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,  false)
         binding.listDoctorRecycler.adapter = psikologAdapter
 
+        binding.icBack.setOnClickListener {
+            finish()
+        }
     }
 }
