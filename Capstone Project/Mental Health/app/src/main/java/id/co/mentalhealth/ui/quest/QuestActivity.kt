@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -81,9 +82,10 @@ class QuestActivity : AppCompatActivity() {
                     questViewModel.submitAnswersForPrediction()
                     Toast.makeText(this, "Mengirim jawaban...", Toast.LENGTH_SHORT).show()
                     logUserAnswers()
-
+                    showLoading(true)
                     questViewModel.predictionResult.observe(this) { result ->
                         result.onSuccess { predictions ->
+                            showLoading(false)
                             Log.d("QuestActivity", "Predictions: $predictions")
                                 val predictionsText = predictions.username
                                 val predictionsMessage = predictions.message
@@ -94,6 +96,7 @@ class QuestActivity : AppCompatActivity() {
                                 finish()
                         }
                         result.onFailure {
+                            showLoading(false)
                             Toast.makeText(this, "Gagal melakukan prediksi.", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -172,6 +175,11 @@ class QuestActivity : AppCompatActivity() {
         }
         val notification = builder.build()
         notificationManager.notify(NOTIFICATION_ID, notification)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {

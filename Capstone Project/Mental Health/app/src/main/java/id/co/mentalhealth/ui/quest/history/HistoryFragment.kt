@@ -36,10 +36,12 @@ class HistoryFragment : Fragment() {
 
         historyViewModel.getUserAllHistory()
 
-
+        showLoading(true)
 
         historyViewModel.history.observe(viewLifecycleOwner) { result ->
+
             result.onSuccess { historyResponse ->
+                showLoading(false)
                 val historyList = historyResponse.data
                 Log.d("HistoryFragment", "History: $historyList")
                 if (!historyList.isNullOrEmpty()) {
@@ -49,6 +51,7 @@ class HistoryFragment : Fragment() {
                 }
             }
             result.onFailure {
+                showLoading(false)
                 binding.tvHistory.text = "Gagal mengambil riwayat."
             }
         }
@@ -57,6 +60,11 @@ class HistoryFragment : Fragment() {
 
         binding.listHistoryRecycler.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
         binding.listHistoryRecycler.adapter = adapter
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 
 

@@ -82,6 +82,7 @@ class QuestViewModel(private val questionRepository: QuestionRepository) : ViewM
                     q16 = answersList[15], q17 = answersList[16], q18 = answersList[17], q19 = answersList[18], q20 = answersList[19],
                     q21 = answersList[20], q22 = answersList[21], q23 = answersList[22], q24 = answersList[23], q25 = answersList[24]
                 )
+
                 if (result.isSuccess) {
                     val predictionResponse = result.getOrNull()
                     if (predictionResponse != null){

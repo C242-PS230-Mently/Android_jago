@@ -2,6 +2,7 @@ package id.co.mentalhealth.ui.psikolog
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,12 +24,15 @@ class PsikologActivity : AppCompatActivity() {
         binding = ActivityPsikologBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        showLoading(true)
+
         viewModel.getDoctor()
 
         viewModel.doctor.observe(this){ result ->
             result.onSuccess { doctorResponse ->
                 val doctorList = doctorResponse.doctor
                 Log.d("Doctor", doctorList.toString())
+                showLoading(false)
                 if (!doctorList.isNullOrEmpty()) {
                     psikologAdapter.submitList(doctorList)
                 }else{
@@ -36,6 +40,7 @@ class PsikologActivity : AppCompatActivity() {
                 }
             }
             result.onFailure {
+                showLoading(false)
                 binding.tvDoctor.text = "Gagal mengambil psikolog."
             }
         }
@@ -47,5 +52,10 @@ class PsikologActivity : AppCompatActivity() {
         binding.icBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 }
