@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import id.co.mentalhealth.data.network.ResultState
+import id.co.mentalhealth.data.network.retrofit.ApiConfig
 import id.co.mentalhealth.data.pref.UserModel
 import id.co.mentalhealth.databinding.ActivityLoginBinding
 import id.co.mentalhealth.ui.auth.AuthViewModel
@@ -96,6 +97,7 @@ class LoginActivity : AppCompatActivity() {
                                     show()
                                 }
                                 viewModel.saveSession(UserModel(photo, email, id, name, token))
+                                ApiConfig.setToken(token)
                                 showLoading(false)
                             }
 
