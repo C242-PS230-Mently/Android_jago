@@ -33,7 +33,7 @@ class ProfileViewModelFactory(private val repository: ProfileRepository) :
         fun getInstance(context: Context): ProfileViewModelFactory {
             if (INSTANCE == null) {
                 synchronized(ProfileViewModelFactory::class.java) {
-                    INSTANCE = ProfileViewModelFactory(Injection.provideProfileRepository(context))
+                    INSTANCE = ProfileViewModelFactory(Injection.provideRepository(context, ProfileRepository::class.java))
                 }
             }
             return INSTANCE as ProfileViewModelFactory

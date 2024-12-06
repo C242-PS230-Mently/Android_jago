@@ -24,7 +24,7 @@ class HomeViewModelFactory(private val repository: HomeRepository) : ViewModelPr
         fun getInstance(context: Context): HomeViewModelFactory {
             if (INSTANCE == null) {
                 synchronized(HomeViewModelFactory::class.java) {
-                    INSTANCE = HomeViewModelFactory(Injection.provideDashboardRepository(context))
+                    INSTANCE = HomeViewModelFactory(Injection.provideRepository(context, HomeRepository::class.java))
                 }
             }
             return INSTANCE as HomeViewModelFactory

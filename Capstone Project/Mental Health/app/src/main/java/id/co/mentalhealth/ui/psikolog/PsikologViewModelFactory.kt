@@ -25,7 +25,7 @@ class PsikologViewModelFactory(private val repository: PsikologRepository): View
         fun getInstance(context: Context): PsikologViewModelFactory {
             if (INSTANCE == null) {
                 synchronized(PsikologViewModelFactory::class.java) {
-                    INSTANCE = PsikologViewModelFactory(Injection.providePsikologdRepository(context))
+                    INSTANCE = PsikologViewModelFactory(Injection.provideRepository(context, PsikologRepository::class.java))
                 }
             }
             return INSTANCE as PsikologViewModelFactory

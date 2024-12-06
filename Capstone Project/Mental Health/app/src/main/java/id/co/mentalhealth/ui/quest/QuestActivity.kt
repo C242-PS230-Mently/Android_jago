@@ -22,7 +22,7 @@ class QuestActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuestBinding
     private val questViewModel: QuestViewModel by viewModels {
-        QuestViewModelFactory(this)
+        QuestViewModelFactory.getInstance(this)
     }
 
     private val requestPermissionLauncher =

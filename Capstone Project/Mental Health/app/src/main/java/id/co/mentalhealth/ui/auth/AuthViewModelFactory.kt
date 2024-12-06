@@ -28,7 +28,7 @@ class AuthViewModelFactory(private val repository: AuthRepository) : ViewModelPr
         fun getInstance(context: Context): AuthViewModelFactory {
             if (INSTANCE == null) {
                 synchronized(AuthViewModelFactory::class.java) {
-                    INSTANCE = AuthViewModelFactory(Injection.provideRepository(context))
+                    INSTANCE = AuthViewModelFactory(Injection.provideRepository(context, AuthRepository::class.java))
                 }
             }
             return INSTANCE as AuthViewModelFactory

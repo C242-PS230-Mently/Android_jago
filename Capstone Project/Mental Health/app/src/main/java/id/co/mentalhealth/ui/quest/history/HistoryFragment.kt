@@ -18,7 +18,7 @@ class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var adapter: HistoryAdapter
     private val historyViewModel: HistoryViewModel by viewModels {
-        HistoryViewModelFactory(requireContext())
+        HistoryViewModelFactory.getInstance(requireContext())
     }
 
 

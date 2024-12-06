@@ -7,6 +7,7 @@ import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.data.network.response.LoginResponse
 import id.co.mentalhealth.data.network.response.PasswordResponse
 import id.co.mentalhealth.data.network.response.RegisterResponse
+import id.co.mentalhealth.data.network.retrofit.ApiConfig
 import id.co.mentalhealth.data.network.retrofit.ApiService
 import id.co.mentalhealth.data.pref.UserModel
 import id.co.mentalhealth.data.pref.UserPreferences
@@ -30,6 +31,7 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
         emit(ResultState.Loading)
         try {
             val successResponse = apiService.login(email, password)
+            ApiConfig.setToken(successResponse.accessToken)
             Log.d("AuthRepository", "Login Response: $successResponse")
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
@@ -70,6 +72,7 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
 
     suspend fun logout() {
         userPreferences.logout()
+        ApiConfig.setToken(null)
     }
 
     companion object {

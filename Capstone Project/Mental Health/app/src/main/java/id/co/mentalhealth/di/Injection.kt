@@ -14,40 +14,17 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
 object Injection {
-    fun provideRepository(context: Context): AuthRepository {
+    fun <T> provideRepository(context: Context, repositoryClass: Class<T>): T {
         val pref = UserPreferences.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiService()
-        return AuthRepository.getInstance(apiService, pref)
-    }
 
-    fun provideDashboardRepository(context: Context): HomeRepository {
-        val pref = UserPreferences.getInstance(context.dataStore)
-        val apiService = ApiConfig.getApiService()
-        return HomeRepository.getInstance(apiService, pref)
-    }
-
-    fun providePsikologdRepository(context: Context): PsikologRepository {
-        val pref = UserPreferences.getInstance(context.dataStore)
-        val apiService = ApiConfig.getApiService()
-        return PsikologRepository.getInstance(apiService, pref)
-    }
-
-    fun provideQuestRepository(context: Context): QuestionRepository {
-        val pref = UserPreferences.getInstance(context.dataStore)
-        val user =  runBlocking { pref.getSession().first() }
-        val token = user.token
-
-        if (token.isNullOrEmpty()) {
-            throw Exception("User token is missing.")
-        }
-        val apiService = ApiConfig.getApiService(user.token)
-        return QuestionRepository.getInstance(apiService, pref)
-    }
-
-    fun provideProfileRepository(context: Context): ProfileRepository {
-        val pref = UserPreferences.getInstance(context.dataStore)
-        val user = runBlocking { pref.getSession().first() }
-        val apiService = ApiConfig.getApiService(user.token)
-        return ProfileRepository.getInstance(apiService)
+        return when(repositoryClass) {
+            AuthRepository::class.java -> AuthRepository.getInstance(apiService, pref)
+            ProfileRepository::class.java -> ProfileRepository.getInstance(apiService)
+            HomeRepository::class.java -> HomeRepository.getInstance(apiService, pref)
+            PsikologRepository::class.java -> PsikologRepository.getInstance(apiService, pref)
+            QuestionRepository::class.java -> QuestionRepository.getInstance(apiService, pref)
+            else -> throw IllegalArgumentException("Unknown repository class: $repositoryClass")
+        } as T
     }
 }

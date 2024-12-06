@@ -12,7 +12,7 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: HistoryViewModel by viewModels(){
-        HistoryViewModelFactory(this)
+        HistoryViewModelFactory.getInstance(this)
     }
 
     companion object {
