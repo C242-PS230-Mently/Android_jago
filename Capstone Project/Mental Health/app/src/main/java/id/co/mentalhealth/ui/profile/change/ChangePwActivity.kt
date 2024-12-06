@@ -1,12 +1,11 @@
 package id.co.mentalhealth.ui.profile.change
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.databinding.ActivityChangePwBinding
-import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.profile.ProfileViewModel
 import id.co.mentalhealth.ui.profile.ProfileViewModelFactory
 
@@ -24,17 +23,18 @@ class ChangePwActivity : AppCompatActivity() {
 
         viewModel.resetPassword.observe(this){ result ->
             result.onSuccess {
+                showLoading(false)
                 Toast.makeText(this, "Password berhasil diubah", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
                 finish()
             }
             result.onFailure { error ->
+                showLoading(false)
                 Toast.makeText(this, "Gagal mengubah password: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.btnSimpan.setOnClickListener {
+            showLoading(true)
             val newPassword = binding.edtPassword.text
             if (newPassword == null) {
                 Toast.makeText(this, "Masukkan Password Baru", Toast.LENGTH_SHORT).show()
@@ -46,5 +46,10 @@ class ChangePwActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 }

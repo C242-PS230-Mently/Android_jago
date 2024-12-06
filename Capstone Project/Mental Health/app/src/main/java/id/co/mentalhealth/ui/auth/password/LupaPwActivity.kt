@@ -2,6 +2,7 @@ package id.co.mentalhealth.ui.auth.password
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -21,25 +22,33 @@ class LupaPwActivity : AppCompatActivity() {
         binding = ActivityLupaPwBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         viewModel.forgot.observe(this){result ->
+
             result.onSuccess {
+                showLoading(false)
                 Toast.makeText(this, "Email berhasil dikirim", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ResetPwActivity::class.java)
                 startActivity(intent)
             }
             result.onFailure { error ->
+                showLoading(false)
                 Toast.makeText(this, "Gagal mengirim email: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.btnKirim.setOnClickListener {
+            showLoading(true)
             val email = binding.edtEmail.text.toString().trim()
             if(email.isEmpty()){
                 Toast.makeText(this, "Masukkan Email Terlebih dahulu", Toast.LENGTH_SHORT).show()
             }else{
                 if(isValidEmail(email)){
+
                     viewModel.forgot(email)
                 }else{
+
                     Toast.makeText(this, "Masukkan Email yang Valid", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -53,6 +62,11 @@ class LupaPwActivity : AppCompatActivity() {
 
     private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 
 }

@@ -52,7 +52,7 @@
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Yuk Mulsi Jaga Kesehatan Mentalmu Sekarang !!!"
+                    android:text="Yuk Mulai Jaga Kesehatan Mentalmu Sekarang !!!"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"

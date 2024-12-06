@@ -2,6 +2,7 @@ package id.co.mentalhealth.ui.auth.password
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -24,16 +25,19 @@ class ResetPwActivity : AppCompatActivity() {
 
         viewModel.resetPassword.observe(this){result ->
             result.onSuccess {
+                showLoading(false)
                 Toast.makeText(this, "Berhasil Membuat Password Baru", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
             result.onFailure { error ->
+                showLoading(false)
                 Toast.makeText(this, "Gagal Membuat Password Baru", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.btnSimpan.setOnClickListener {
+            showLoading(true)
             val otp = binding.edtOtp.text.toString().trim()
             val newPassword = binding.edtPassword.text.toString().trim()
             when{
@@ -56,5 +60,10 @@ class ResetPwActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 }

@@ -22,15 +22,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="foto profile"
-        android:src="@drawable/foto_profile"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_profile_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_profile" />
+        app:layout_constraintTop_toBottomOf="@id/title_profile">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="foto profile"
+            android:scaleType="fitXY"
+            android:src="@drawable/foto_profile" />
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <TextView
         android:id="@+id/profile_name"
@@ -42,9 +52,9 @@
         android:lines="1"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-        app:layout_constraintStart_toEndOf="@id/profile_image"
-        app:layout_constraintTop_toTopOf="@id/profile_image" />
+        app:layout_constraintBottom_toBottomOf="@+id/cd_profile_image"
+        app:layout_constraintStart_toEndOf="@id/cd_profile_image"
+        app:layout_constraintTop_toTopOf="@id/cd_profile_image" />
 
     <TextView
         android:id="@+id/account_settings_title"
@@ -56,7 +66,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+        app:layout_constraintTop_toBottomOf="@id/cd_profile_image" />
 
     <LinearLayout
         android:id="@+id/layout_personal_info"
