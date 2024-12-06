@@ -42,6 +42,17 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    suspend fun updatePhoto(newUrl: String) {
+        try {
+            dataStore.edit { preferences ->
+                preferences[PHOTO_KEY] = newUrl
+            }
+            Log.d("UserPreferences", "Photo berhasil diperbarui.")
+            } catch (e: Exception) {
+            Log.e("UserPreferences", "Gagal memperbarui photo: ${e.message}")
+        }
+    }
+
     // Retrieve the token from DataStore
     fun getSession(): Flow<UserModel> {
         return dataStore.data.map { preferences ->

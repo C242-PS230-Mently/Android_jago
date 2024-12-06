@@ -31,7 +31,6 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
         emit(ResultState.Loading)
         try {
             val successResponse = apiService.login(email, password)
-            ApiConfig.setToken(successResponse.accessToken)
             Log.d("AuthRepository", "Login Response: $successResponse")
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
@@ -67,6 +66,11 @@ class AuthRepository(private val apiService: ApiService, private val userPrefere
     suspend fun updateUserName(newName: String) {
         userPreferences.updateUserName(newName)
         Log.d("SessionModel", "Name updated: $newName")
+    }
+
+    suspend fun updatePhoto(newUrl: String) {
+        userPreferences.updatePhoto(newUrl)
+        Log.d("SessionModel", "Photo updated: $newUrl")
     }
 
     fun getSession(): Flow<UserModel> {

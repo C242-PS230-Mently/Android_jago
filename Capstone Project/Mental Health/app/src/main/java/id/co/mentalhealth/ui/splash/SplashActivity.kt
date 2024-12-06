@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import id.co.mentalhealth.data.network.retrofit.ApiConfig
 import id.co.mentalhealth.data.pref.UserPreferences
 import id.co.mentalhealth.data.pref.dataStore
 import id.co.mentalhealth.databinding.ActivitySplashBinding
@@ -91,6 +92,7 @@ class SplashActivity : AppCompatActivity() {
                     "SplashActivity",
                     "Login. Mengarahkan ke HomePage_Activity."
                 )
+                ApiConfig.setToken(user.token)
                 navigateToHome()
             }
         }

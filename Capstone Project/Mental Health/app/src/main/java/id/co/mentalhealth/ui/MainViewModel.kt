@@ -25,4 +25,10 @@ class MainViewModel(private val repository: AuthRepository) : ViewModel() {
         }
     }
 
+    fun updatePhoto(newUrl: String) {
+        viewModelScope.launch {
+            repository.updatePhoto(newUrl)
+        }
+    }
+
 }

@@ -23,7 +23,6 @@ import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.databinding.ActivityDetailProfileBinding
 import id.co.mentalhealth.ui.MainViewModel
 import com.bumptech.glide.Glide
-import id.co.mentalhealth.data.pref.UserModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -149,7 +148,6 @@ class DetailProfileActivity : AppCompatActivity() {
                                             setTitle("Yeah!")
                                             setMessage("Profile berhasil diupdate nih.")
                                             setPositiveButton("Lanjut") { dialog, _ ->
-                                                mainViewModel.updateUserName(fullName)
                                                 dialog.dismiss()
                                                 finish()
                                             }
@@ -157,6 +155,7 @@ class DetailProfileActivity : AppCompatActivity() {
                                             show()
                                         }
                                         showLoading(false)
+                                        mainViewModel.updateUserName(fullName)
                                     }
 
                                     is ResultState.Error -> {
@@ -326,9 +325,7 @@ class DetailProfileActivity : AppCompatActivity() {
                                 show()
                             }
                             showLoading(false)
-                            mainViewModel.getSession().observe(this) { user ->
-                                user.photo = response.data.url
-                            }
+                            mainViewModel.updatePhoto(response.data.url.toString())
                         }
 
                         is ResultState.Error -> {
