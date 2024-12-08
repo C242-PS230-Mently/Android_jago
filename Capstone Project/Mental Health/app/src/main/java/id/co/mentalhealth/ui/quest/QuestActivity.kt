@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.view.children
 import id.co.mentalhealth.R
 import id.co.mentalhealth.data.network.response.QuestionsItem
 import id.co.mentalhealth.databinding.ActivityQuestBinding
@@ -83,6 +84,7 @@ class QuestActivity : AppCompatActivity() {
                     Toast.makeText(this, "Mengirim jawaban...", Toast.LENGTH_SHORT).show()
                     logUserAnswers()
                     showLoading(true)
+
                     questViewModel.predictionResult.observe(this) { result ->
                         result.onSuccess { predictions ->
                             showLoading(false)
@@ -180,6 +182,11 @@ class QuestActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressIndicator.visibility =
             if (isLoading) View.VISIBLE else View.GONE
+
+        binding.btnBack.isEnabled = !isLoading
+        binding.icBack.isEnabled = !isLoading
+        binding.radioGroup.isEnabled = !isLoading
+        binding.radioGroup.children.forEach { it.isEnabled = !isLoading }
     }
 
     companion object {

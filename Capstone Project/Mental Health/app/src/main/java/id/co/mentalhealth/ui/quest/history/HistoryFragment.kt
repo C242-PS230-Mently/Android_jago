@@ -44,10 +44,10 @@ class HistoryFragment : Fragment() {
                 showLoading(false)
                 val historyList = historyResponse.data
                 Log.d("HistoryFragment", "History: $historyList")
-                if (historyList.isNullOrEmpty()) {
-                    Toast.makeText(requireContext(), "Tidak ada riwayat", Toast.LENGTH_SHORT).show()
-                }else{
+                if (historyList != null) {
                     adapter.submitList(historyList)
+                }else{
+                    Toast.makeText(requireContext(), "Tidak ada riwayat", Toast.LENGTH_SHORT).show()
                 }
             }
             result.onFailure {
