@@ -59,6 +59,9 @@ data class DoctorsItem(
     @field:SerializedName("image_url")
     val image_url: String,
 
+    @field:SerializedName("contact")
+    val contact: String,
+
     @field:SerializedName("location")
     val location: String
 

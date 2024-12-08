@@ -1,5 +1,8 @@
 package id.co.mentalhealth.ui.adapter
 
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -31,7 +34,16 @@ class PsikologAdapter: ListAdapter<DoctorsItem, PsikologAdapter.ListViewHolder>(
             Glide.with(binding.ivEventPicture.context)
                 .load(doctorsItem.image_url)
                 .into(binding.ivEventPicture)
-
+            Log.d("ListItemAdapter", "$doctorsItem")
+            itemView.setOnClickListener {
+                val url = doctorsItem.contact
+                if (url != null) {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    itemView.context.startActivity(intent)
+                }else{
+                    Log.d("DoctorAdapter", "URL Kosong")
+                }
+            }
         }
     }
 
