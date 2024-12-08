@@ -1,10 +1,12 @@
 package id.co.mentalhealth.ui.quest
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mentalhealth.databinding.ActivityDetailBinding
+import id.co.mentalhealth.ui.psikolog.PsikologActivity
 import id.co.mentalhealth.ui.quest.history.HistoryViewModel
 import id.co.mentalhealth.ui.quest.history.HistoryViewModelFactory
 
@@ -68,6 +70,12 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.icBack.setOnClickListener {
+            finish()
+        }
+
+        binding.btndokter.setOnClickListener {
+            val intent = Intent(this, PsikologActivity::class.java)
+            startActivity(intent)
             finish()
         }
 

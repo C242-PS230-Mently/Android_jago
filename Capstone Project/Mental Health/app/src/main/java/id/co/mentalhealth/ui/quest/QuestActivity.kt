@@ -183,6 +183,7 @@ class QuestActivity : AppCompatActivity() {
         binding.progressIndicator.visibility =
             if (isLoading) View.VISIBLE else View.GONE
 
+        binding.btnNext.isEnabled = !isLoading
         binding.btnBack.isEnabled = !isLoading
         binding.icBack.isEnabled = !isLoading
         binding.radioGroup.isEnabled = !isLoading
