@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -81,11 +82,21 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logout() {
-        viewModel.logout()
-        val intent = Intent(requireActivity(), MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Yakin?")
+            setMessage("Memilih \"Ya\" akan keluar dari akun ini")
+            setPositiveButton("Ya") { _, _ ->
+                viewModel.logout()
+                val intent = Intent(requireActivity(), MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+                requireActivity().finish()
+            }
+            setNegativeButton("Batal", null)
+            create()
+            show()
         }
-        startActivity(intent)
-        requireActivity().finish()
+
     }
 }
