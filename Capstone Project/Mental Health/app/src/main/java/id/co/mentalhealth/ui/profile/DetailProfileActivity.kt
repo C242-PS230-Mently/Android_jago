@@ -2,27 +2,27 @@ package id.co.mentalhealth.ui.profile
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Bundle
-import android.widget.Button
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import android.net.Uri
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.co.mentalhealth.R
 import id.co.mentalhealth.data.network.ResultState
 import id.co.mentalhealth.databinding.ActivityDetailProfileBinding
 import id.co.mentalhealth.ui.MainViewModel
-import com.bumptech.glide.Glide
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -290,7 +290,7 @@ class DetailProfileActivity : AppCompatActivity() {
                 Glide.with(binding.root.context)
                     .load(user.photo)
                     .placeholder(R.drawable.foto_profile)
-                    .error(R.drawable.ic_profile)
+                    .error(R.drawable.foto_profile)
                     .into(binding.profileImage)
             } else {
                 binding.profileImage.setImageResource(R.drawable.foto_profile)

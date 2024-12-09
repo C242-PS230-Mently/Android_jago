@@ -45,13 +45,13 @@ class DetailActivity : AppCompatActivity() {
                     Log.d("Detail-history", "Loaded History Item: $predictions")
                     predictions?.let {
                         val updateBarSet = listOf(
-                            "TINGGI" to 10f,
+                            "Tinggi" to 10f,
                             "Skizofrenia" to getLevelInt(it.levelSkizofrenia),
                             "OCD" to getLevelInt(it.levelOCD),
                             "Kecemasan" to getLevelInt(it.levelKecemasan),
                             "Depresi" to getLevelInt(it.levelDepresi),
                             "Bipolar" to getLevelInt(it.levelBipolar),
-                            "RENDAH" to 0f
+                            "Rendah" to 0f
                         )
                         Log.d("Detail-history", "Loaded History predictions Item: $updateBarSet")
                         binding.apply {

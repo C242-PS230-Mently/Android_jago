@@ -16,8 +16,8 @@ import id.co.mentalhealth.databinding.FragmentProfileBinding
 import id.co.mentalhealth.ui.MainActivity
 import id.co.mentalhealth.ui.MainViewModel
 import id.co.mentalhealth.ui.auth.AuthViewModelFactory
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import id.co.mentalhealth.ui.profile.change.ChangePwActivity
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -72,7 +72,7 @@ class ProfileFragment : Fragment() {
                     .load(user.photo)
                     .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(20, 0)))
                     .placeholder(R.drawable.foto_profile)
-                    .error(R.drawable.ic_profile)
+                    .error(R.drawable.foto_profile)
                     .into(binding.profileImage)
             } else {
                 binding.profileImage.setImageResource(R.drawable.foto_profile)
